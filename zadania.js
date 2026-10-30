@@ -1,8 +1,14 @@
 function openTopic(taskId) {
+    // 1. Ukryj menu główne
     document.getElementById('menu-view').classList.add('hidden');
+    
+    // 2. TARCZA OCHRONNA: Wymuś ukrycie wszystkich zadań (w tym Podsumowania)
+    const tasks = document.querySelectorAll('.task-view');
+    tasks.forEach(task => task.classList.add('hidden'));
+    
+    // 3. Pokaż TYLKO kliknięty temat
     document.getElementById(taskId).classList.remove('hidden');
 }
-
 function closeTopic() {
     const tasks = document.querySelectorAll('.task-view');
     tasks.forEach(task => task.classList.add('hidden'));
