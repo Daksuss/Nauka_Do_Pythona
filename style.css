@@ -1,0 +1,99 @@
+/* --- RESET I BAZOWE USTAWIENIA --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Ustawiamy body jako flex, żeby stopka zawsze była na samym dole (nawet jak jest mało tekstu) */
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Zajmuje minimum 100% wysokości ekranu */
+    background-color: #f8f9fa; /* Delikatnie szare tło całej strony, żeby nie raziło po oczach */
+}
+
+/* --- NAGŁÓWEK (HEADER) I STOPKA (FOOTER) --- */
+header, footer {
+    background-color: #0056b3; /* Głębszy niebieski, zgodnie z rysunkiem */
+    color: white;
+    text-align: center;
+    padding: 25px 20px;
+}
+
+/* --- GŁÓWNA ZAWARTOŚĆ --- */
+.main-container {
+    flex: 1; /* Sprawia, że ta sekcja wypycha stopkę na dół */
+    display: flex;
+    justify-content: space-between; /* Rozsuwa lewy obrazek, środek i prawy obrazek na boki */
+    align-items: center; /* Wyśrodkowuje w pionie */
+    padding: 40px 20px;
+    max-width: 1200px; /* Maksymalna szerokość, żeby na wielkich monitorach nie rozjechało się za bardzo */
+    margin: 0 auto; /* Wyśrodkowanie kontenera na stronie */
+    width: 100%;
+}
+
+/* --- ŚRODKOWA SEKCJA Z TEKSTEM I PRZYCISKAMI --- */
+.content {
+    flex: 1;
+    text-align: center;
+}
+
+.content h2 {
+    font-size: 2.2rem;
+    color: #333;
+    margin-bottom: 40px; /* Odstęp między napisem a przyciskami */
+}
+
+/* --- PRZYCISKI --- */
+.button-menu {
+    display: flex;
+    justify-content: center; /* Układa przyciski obok siebie na środku */
+    gap: 20px; /* Równy odstęp między przyciskami */
+    flex-wrap: wrap; /* Jeśli ekran telefonu będzie za wąski, przyciski zjadą do nowej linii */
+}
+
+.btn {
+    background-color: #007bff; /* Jaśniejszy niebieski dla przycisków */
+    color: white;
+    text-decoration: none; /* Usuwa domyślne podkreślenie linków */
+    padding: 15px 40px;
+    border-radius: 30px; /* Zaokrąglone boki - zgodnie z rysunkiem */
+    font-size: 1.2rem;
+    font-weight: bold;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Lekki cień, żeby "odstawały" od tła */
+    transition: background-color 0.3s, transform 0.2s; /* Płynna animacja najechania myszką */
+}
+
+/* Efekt najechania myszką na przycisk */
+.btn:hover {
+    background-color: #004494; /* Ciemniejszy kolor po najechaniu */
+    transform: translateY(-3px); /* Przycisk lekko unosi się do góry */
+}
+
+/* --- MIEJSCA NA OBRAZKI (LEWE I PRAWE) --- */
+.image-placeholder {
+    width: 250px; /* Zarezerwowane miejsce na grafiki */
+    display: flex;
+    justify-content: center;
+}
+
+.image-placeholder img {
+    max-width: 100%; /* Obrazek nigdy nie wyjdzie poza swój kontener */
+    height: auto;
+    border-radius: 10px; /* Opcjonalne zaokrąglenie rogów przyszłych obrazków */
+}
+
+/* --- RESPANSYWNOŚĆ (WYGLĄD NA TELEFONACH) --- */
+@media (max-width: 768px) {
+    .main-container {
+        flex-direction: column; /* Na małych ekranach układa elementy jeden pod drugim */
+    }
+    
+    .image-placeholder {
+        margin: 20px 0;
+        width: 100%;
+        max-width: 300px;
+    }
+}

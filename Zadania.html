@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zadania Praktyczne - Phyton</title>
+    <link rel="stylesheet" href="zadania.css">
+    <script src="zadania.js" defer></script>
+</head>
+<body>
+
+    <header class="top-bar">
+        <a href="index.html" class="back-btn">← Wróć do menu</a>
+        <h1>Zadania Praktyczne</h1>
+    </header>
+
+    <main class="tasks-container">
+        
+        <!-- WIDOK MENU GŁÓWNEGO ZADAŃ -->
+        <section id="menu-view">
+            <h2>Wybierz moduł wyzwań</h2>
+            <div class="topic-grid">
+                
+                <div class="topic-card" onclick="openTopic('task-1')">
+                    <div class="topic-info">
+                        <h3>1. Podstawy, zmienne i wejście/wyjście</h3>
+                        <span class="status pending" id="badge-task-1">Ukończono 0/3</span>
+                    </div>
+                    <div class="topic-arrow">▶</div>
+                </div>
+
+                <div class="topic-card" onclick="openTopic('task-2')">
+                    <div class="topic-info">
+                        <h3>2. Praca z tekstem: Wielkość, Długość i Wycinanie</h3>
+                        <span class="status pending" id="badge-task-2">Ukończono 0/3</span>
+                    </div>
+                    <div class="topic-arrow">▶</div>
+                </div>
+
+                <div class="topic-card" onclick="openTopic('task-3')">
+                    <div class="topic-info">
+                        <h3>3. Listy, Pętle i Podejmowanie Decyzji (If)</h3>
+                        <span class="status pending" id="badge-task-3">Ukończono 0/4</span>
+                    </div>
+                    <div class="topic-arrow">▶</div>
+                </div>
+
+                <div class="topic-card" onclick="openTopic('task-4')">
+                    <div class="topic-info">
+                        <h3>4. Krotki, Losowość i Zaawansowane Pętle</h3>
+                        <span class="status pending" id="badge-task-4">Ukończono 0/3</span>
+                    </div>
+                    <div class="topic-arrow">▶</div>
+                </div>
+
+                <div class="topic-card" onclick="openTopic('task-5')">
+                    <div class="topic-info">
+                        <h3>5. Własne Funkcje (def), Typowanie i Zwracanie</h3>
+                        <span class="status pending" id="badge-task-5">Ukończono 0/3</span>
+                    </div>
+                    <div class="topic-arrow">▶</div>
+                </div>
+
+                <div class="topic-card" onclick="openTopic('task-6')">
+                    <div class="topic-info">
+                        <h3> Podsumowanie</h3>
+                        <span class="status pending" id="badge-task-6">Ukończono 0/1</span>
+                    </div>
+                    <div class="topic-arrow">▶</div>
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- WIDOK ZADAŃ DLA TEMATU 1 -->
+        <section id="task-1" class="task-view hidden">
+            <button class="close-topic-btn" onclick="closeTopic()">← Wróć do listy modułów</button>
+            <h2>1. Wyzwania: Podstawy i Zmienne</h2>
+            <p class="intro-text">Odpal swój edytor kodu, utwórz nowy plik i spróbuj samodzielnie napisać poniższe programy. Gdy utkniesz, zajrzyj do przykładowego rozwiązania.</p>
+
+            <div class="task-block">
+                <h3>Zadanie 1: Wizytówka</h3>
+                <p>Napisz program, w którym stworzysz 3 zmienne (na sztywno, bez użycia <code>input</code>): <strong>imie</strong>, <strong>wiek</strong> oraz <strong>zawod</strong>. Następnie użyj f-stringa, aby wypisać w konsoli ładne zdanie, np.: <em>"Cześć, jestem Jan, mam 25 lat i pracuję jako Programista."</em></p>
+                <details class="solution">
+                    <summary>Pokaż przykładowe rozwiązanie</summary>
+                    <pre><code>imie = "Jan"
+wiek = 25
+zawod = "Programista"
+
+print(f"Cześć, jestem {imie}, mam {wiek} lat i pracuję jako {zawod}.")</code></pre>
+                </details>
+                <button class="task-done-btn" onclick="markTaskAsDone(this, 'task-1', 1)">✓ Oznacz jako zakończone</button>
+            </div>
+
+            <div class="task-block">
+                <h3>Zadanie 2: Kalkulator pola prostokąta</h3>
+                <p>Napisz program, który zapyta użytkownika o <strong>długość</strong> i <strong>szerokość</strong> boku (osobnymi inputami). Pamiętaj, aby przekonwertować pobrane dane z tekstu na liczby ułamkowe. Oblicz pole i wypisz je na ekranie.</p>
+                <details class="solution">
+                    <summary>Pokaż przykładowe rozwiązanie</summary>
+                    <pre><code>dlugosc_str = input("Podaj długość boku a: ")
+szerokosc_str = input("Podaj długość boku b: ")
+
+dlugosc = float(dlugosc_str)
+szerokosc = float(szerokosc_str)
+
+pole = dlugosc * szerokosc
+print(f"Pole prostokąta wynosi: {pole}")</code></pre>
+                </details>
+                <button class="task-done-btn" onclick="markTaskAsDone(this, 'task-1', 2)">✓ Oznacz jako zakończone</button>
+            </div>
+
+            <div class="task-block">
+                <h3>Zadanie 3: Czyszczenie brudnych danych</h3>
+                <p>Napisz program, który poprosi o podanie ceny. Następnie usuń spacje, zamień przecinek na kropkę, przekonwertuj tekst na liczbę i oblicz, ile będzie kosztować zakup 3 takich produktów.</p>
+                <details class="solution">
+                    <summary>Pokaż przykładowe rozwiązanie</summary>
+                    <pre><code>cena_surowa = input("Podaj cenę produktu: ")
+ilosc = 3
+
+cena_czysta = cena_surowa.strip().replace(',', '.')
+cena = float(cena_czysta)
+
+do_zaplaty = cena * ilosc
+print(f"Za {ilosc} sztuki zapłacisz: {do_zaplaty} zł")</code></pre>
+                </details>
+                <button class="task-done-btn" onclick="markTaskAsDone(this, 'task-1', 3)">✓ Oznacz jako zakończone</button>
+            </div>
+        </section>
+
+
+        <!-- WIDOK ZADAŃ DLA TEMATU 2 -->
+        <section id="task-2" class="task-view hidden">
+            <button class="close-topic-btn" onclick="closeTopic()">← Wróć do listy modułów</button>
+            <h2>2. Wyzwania: Praca z tekstem</h2>
+            <p class="intro-text">Sprawdźmy, jak dobrze potrafisz manipulować ciągami znaków. Pamiętaj, że w Pythonie zaczynamy liczyć od zera!</p>
+
+            <div class="task-block">
+                <h3>Zadanie 1: Analizator słów</h3>
+                <p>Napisz program, który poprosi użytkownika o wpisanie dowolnego słowa. Następnie za pomocą f-stringa wyświetl na ekranie trzy informacje: ile liter ma to słowo, jaka jest jego pierwsza litera oraz jaka jest ostatnia (użyj indeksowania ujemnego).</p>
+                <details class="solution">
+                    <summary>Pokaż przykładowe rozwiązanie</summary>
+                    <pre><code>slowo = input("Wpisz jakieś słowo: ")
+
+dlugosc = len(slowo)
+pierwsza = slowo[0]
+ostatnia = slowo[-1]
+
+print(f"Twoje słowo ma {dlugosc} liter. Zaczyna się na '{pierwsza}', a kończy na '{ostatnia}'.")</code></pre>
+                </details>
+                <button class="task-done-btn" onclick="markTaskAsDone(this, 'task-2', 1)">✓ Oznacz jako zakończone</button>
+            </div>
+
+            <div class="task-block">
+                <h3>Zadanie 2: Rozszyfrowanie kodu biletu</h3>
+                <p>Stwórz zmienną zawierającą kod biletu: <code>bilet = "VIP-2026-WARSZAWA"</code>.<br>
+                Używając wyłącznie krojenia (slicing) ze zmiennej <code>bilet</code>, wyodrębnij do nowych zmiennych i wyświetl: samo słowo "VIP", sam rok "2026" oraz samo miasto "WARSZAWA". Na koniec wyświetl cały kod biletu tyłem do przodu.</p>
+                <details class="solution">
+                    <summary>Pokaż przykładowe rozwiązanie</summary>
+                    <pre><code>bilet = "VIP-2026-WARSZAWA"
+
+typ = bilet[0:3]
+rok = bilet[4:8]
+miasto = bilet[9:]
+odwrocony = bilet[::-1]
+
+print(f"Typ: {typ}")
+print(f"Rok: {rok}")
+print(f"Miasto: {miasto}")
+print(f"Od tyłu: {odwrocony}")</code></pre>
+                </details>
+                <button class="task-done-btn" onclick="markTaskAsDone(this, 'task-2', 2)">✓ Oznacz jako zakończone</button>
+            </div>
+
+            <div class="task-block">
+                <h3>Zadanie 3: Standaryzacja zepsutych danych</h3>
+                <p>Napisz kod, który wyczyści poniższe dane i sformatuje je tak, aby pierwsza litera każdego słowa była duża, a reszta mała. Oczekiwany wynik na ekranie to idealne: <strong>Jan Kowalski</strong>.</p>
+                <details class="solution">
+                    <summary>Pokaż przykładowe rozwiązanie</summary>
+                    <pre><code>dane = "   jAn KOWALski   "
+dane_czyste = dane.strip().title()
+print(f"Poprawne dane to: {dane_czyste}")</code></pre>
+                </details>
+                <button class="task-done-btn" onclick="markTaskAsDone(this, 'task-2', 3)">✓ Oznacz jako zakończone</button>
+            </div>
+        </section>
+
+
+        <!-- WIDOK ZADAŃ DLA TEMATU 3 -->
+        <section id="task-3" class="task-view hidden">
+            <button class="close-topic-btn" onclick="closeTopic()">← Wróć do listy modułów</button>
+            <h2>3. Wyzwania: Listy, Pętle i Warunki (If)</h2>
+            <p class="intro-text">Teraz wchodzimy na wyższy poziom. Skup się na poprawnych wcięciach (tabulacjach) w pętlach i instrukcjach warunkowych!</p>
+
+            <div class="task-block">
+                <h3>Zadanie 1: Pusty magazyn i dostawa</h3>
+                <p>1. Utwórz pustą listę <code>magazyn</code>. 2. Dodaj do niej "Laptop". 3. Dodaj naraz: "Myszka", "Klawiatura", "Monitor". 4. Wyświetl całą zawartość, pierwszy i ostatni element.</p>
+                <details class="solution">
+                    <summary>Pokaż przykładowe rozwiązanie</summary>
+                    <pre><code>magazyn = []
+magazyn.append("Laptop")
+magazyn.extend(["Myszka", "Klawiatura", "Monitor"])
+
+print(f"Cały magazyn: {magazyn}")
+print(f"Pierwszy element: {magazyn[0]}")
+print(f"Ostatni element: {magazyn[-1]}")</code></pre>
+                </details>
+                <button class="task-done-btn" onclick="markTaskAsDone(this, 'task-3', 1)">✓ Oznacz jako zakończone</button>
+            </div>
+
+            <div class="task-block">
+                <h3>Zadanie 2: Szybki selekcjoner</h3>
+                <p>Utwórz listę <code>osoby = ["Anna", "Tomasz", "Piotr", "Zofia", "Karolina"]</code>. Użyj pętli <code>for</code> i instrukcji <code>if</code>, aby sprawdzić, czy ostatnia litera to "a". Wypisz odpowiedni komunikat o płci dla każdego imienia.</p>
+                <details class="solution">
+                    <summary>Pokaż przykładowe rozwiązanie</summary>
+                    <pre><code>osoby = ["Anna", "Tomasz", "Piotr", "Zofia", "Karolina"]
+
+for imie in osoby:
+    if imie[-1].lower() == 'a':
+        print(f"{imie} to kobieta.")
+    else:
+        print(f"{imie} to mężczyzna.")</code></pre>
+                </details>
+                <button class="task-done-btn" onclick="markTaskAsDone(this, 'task-3', 2)">✓ Oznacz jako zakończone</button>
+            </div>
+
+            <div class="task-block">
+                <h3>Zadanie 3: Filtrowanie zamówień</h3>
+                <p>Napisz program z listą <code>menu = ["Margherita", "Pepperoni", "Capricciosa"]</code>. Poproś o podanie nazwy pizzy (zabezpiecz się przed błędami wpisywania). Sprawdź operatorem <code>in</code>, czy pizza jest w menu i wypisz stosowny komunikat.</p>
+                <details class="solution">
+                    <summary>Pokaż przykładowe rozwiązanie</summary>
+                    <pre><code>menu = ["Margherita", "Pepperoni", "Capricciosa"]
+wybor_uzytkownika = input("Jaką pizzę zamawiasz? ").strip().capitalize()
+
+if wybor_uzytkownika in menu:
+    print(f"Zamówienie na {wybor_uzytkownika} przyjęte!")
+else:
+    print("Przykro nam, nie mamy tego w menu.")</code></pre>
+                </details>
+                <button class="task-done-btn" onclick="markTaskAsDone(this, 'task-3', 3)">✓ Oznacz jako zakończone</button>
+            </div>
+
+            <div class="task-block">
+                <h3>Zadanie 4: Rozdzielanie list</h3>
+                <p>Stwórz listę <code>wyniki = [40, 95, 25, 80, 50, 100]</code>. Pętlą przydziel wyniki większe lub równe 50 do nowej listy <code>zdane</code>, a resztę do listy <code>oblane</code>. Wypisz obie.</p>
+                <details class="solution">
+                    <summary>Pokaż przykładowe rozwiązanie</summary>
+                    <pre><code>wyniki = [40, 95, 25, 80, 50, 100]
+zdane = []
+oblane = []
+
+for punkty in wyniki:
+    if punkty >= 50:
+        zdane.append(punkty)
+    else:
+        oblane.append(punkty)
+        
+print(f"Zdane egzaminy: {zdane}")
+print(f"Oblane egzaminy: {oblane}")</code></pre>
+                </details>
+                <button class="task-done-btn" onclick="markTaskAsDone(this, 'task-3', 4)">✓ Oznacz jako zakończone</button>
+            </div>
+        </section>
+
+
+        <!-- WIDOK ZADAŃ DLA TEMATU 4 -->
+        <section id="task-4" class="task-view hidden">
+            <button class="close-topic-btn" onclick="closeTopic()">← Wróć do listy modułów</button>
+            <h2>4. Wyzwania: Krotki, Losowość i Zaawansowane Pętle</h2>
+            <p class="intro-text">Czas na wprowadzenie odrobiny losowości i automatyzacji do Twojego kodu. Wykorzystaj poznane funkcje, aby ułatwić sobie pracę!</p>
+
+            <div class="task-block">
+                <h3>Zadanie 1: Tygodniowa loteria</h3>
+                <p>Stwórz krotkę z dniami tygodnia. Wylosuj liczbę od 0 do 6 za pomocą modułu <code>random</code>. Użyj tej liczby jako indeksu, aby wypisać wylosowany dzień.</p>
+                <details class="solution">
+                    <summary>Pokaż przykładowe rozwiązanie</summary>
+                    <pre><code>import random
+dni_tygodnia = ("Poniedziałek", "Wtorek", "Środa", "Czwartek", "Piątek", "Sobota", "Niedziela")
+
+szczesliwy_indeks = random.randint(0, 6)
+wylosowany_dzien = dni_tygodnia[szczesliwy_indeks]
+print(f"Twój szczęśliwy dzień to: {wylosowany_dzien}")</code></pre>
+                </details>
+                <button class="task-done-btn" onclick="markTaskAsDone(this, 'task-4', 1)">✓ Oznacz jako zakończone</button>
+            </div>
+
+            <div class="task-block">
+                <h3>Zadanie 2: Podium z enumerate()</h3>
+                <p>Oto lista: <code>zawodnicy = ["Kamil", "Piotr", "Dawid", "Maciej"]</code>. Użyj pętli z <code>enumerate()</code>, aby wypisać na ekranie po kolei miejsce i imię zawodnika.</p>
+                <details class="solution">
+                    <summary>Pokaż przykładowe rozwiązanie</summary>
+                    <pre><code>zawodnicy = ["Kamil", "Piotr", "Dawid", "Maciej"]
+
+for numer, zawodnik in enumerate(zawodnicy):
+    print(f"Miejsce {numer + 1}: {zawodnik}")</code></pre>
+                </details>
+                <button class="task-done-btn" onclick="markTaskAsDone(this, 'task-4', 2)">✓ Oznacz jako zakończone</button>
+            </div>
+
+            <div class="task-block">
+                <h3>Zadanie 3: Asystent giełdowy</h3>
+                <p>Napisz program analizujący zmiany cen akcji: <code>cena_wczoraj = 120.556</code> oraz <code>cena_dzisiaj = 80.123</code>. Oblicz różnicę, usuń minus używając <code>abs()</code>, zaokrąglij do 2 miejsc po przecinku (<code>round()</code>). Zrób warunek sprawdzający czy zmiana jest pomiędzy 20 a 50.</p>
+                <details class="solution">
+                    <summary>Pokaż przykładowe rozwiązanie</summary>
+                    <pre><code>cena_wczoraj = 120.556
+cena_dzisiaj = 80.123
+
+roznica = cena_wczoraj - cena_dzisiaj
+czysta_zmiana = round(abs(roznica), 2)
+print(f"Cena zmieniła się o: {czysta_zmiana} zł")
+
+if czysta_zmiana > 20 and czysta_zmiana <= 50:
+    print("Umiarkowana zmiana ceny na giełdzie.")</code></pre>
+                </details>
+                <button class="task-done-btn" onclick="markTaskAsDone(this, 'task-4', 3)">✓ Oznacz jako zakończone</button>
+            </div>
+        </section>
+
+
+        <!-- WIDOK ZADAŃ DLA TEMATU 5 -->
+        <section id="task-5" class="task-view hidden">
+            <button class="close-topic-btn" onclick="closeTopic()">← Wróć do listy modułów</button>
+            <h2>5. Wyzwania: Własne Funkcje i Typowanie</h2>
+            <p class="intro-text">Nauczymy się tworzyć własne, wielokrotnego użytku narzędzia (funkcje), które ułatwią nam pisanie czystego kodu.</p>
+
+            <div class="task-block">
+                <h3>Zadanie 1: Własny kalkulator walut</h3>
+                <p>Napisz funkcję <code>przelicz_euro(kwota_pln)</code>. Wewnątrz funkcji podziel kwotę przez kurs (np. 4.30), zaokrąglij do dwóch miejsc po przecinku i zwróć (return) wynik. Wywołaj ją i wypisz wynik na ekranie.</p>
+                <details class="solution">
+                    <summary>Pokaż przykładowe rozwiązanie</summary>
+                    <pre><code>def przelicz_euro(kwota_pln):
+    wynik = kwota_pln / 4.30
+    return round(wynik, 2)
+
+w_portfelu = przelicz_euro(100)
+print(f"Za 100 PLN otrzymasz {w_portfelu} EUR.")</code></pre>
+                </details>
+                <button class="task-done-btn" onclick="markTaskAsDone(this, 'task-5', 1)">✓ Oznacz jako zakończone</button>
+            </div>
+
+            <div class="task-block">
+                <h3>Zadanie 2: Rozdzielanie i zwracanie kilku wartości</h3>
+                <p>Napisz funkcję <code>rozdziel_dane(tekst)</code>, która potnie string np. "Kamil#30" w miejscu '#'. Funkcja ma zwrócić dwie wartości: imię (str) oraz wiek (int).</p>
+                <details class="solution">
+                    <summary>Pokaż przykładowe rozwiązanie</summary>
+                    <pre><code>def rozdziel_dane(tekst: str):
+    imie, wiek_str = tekst.split('#')
+    return imie, int(wiek_str)
+
+moje_imie, moj_wiek = rozdziel_dane("Kamil#30")
+print(f"Imię: {moje_imie}, Wiek za 5 lat: {moj_wiek + 5}")</code></pre>
+                </details>
+                <button class="task-done-btn" onclick="markTaskAsDone(this, 'task-5', 2)">✓ Oznacz jako zakończone</button>
+            </div>
+
+            <div class="task-block">
+                <h3>Zadanie 3: Inteligentny Segregator</h3>
+                <p>Napisz funkcję <code>segreguj</code>, która przyjmuje listę słów. Użyj pętli <code>for</code>, aby podzielić słowa na dwie listy (dłuższe niż 5 znaków i krótsze/równe). Zwróć obie listy na końcu funkcji.</p>
+                <details class="solution">
+                    <summary>Pokaż przykładowe rozwiązanie</summary>
+                    <pre><code>def segreguj(lista_slow: list):
+    dlugie = []
+    krotkie = []
+    
+    for slowo in lista_slow:
+        if len(slowo) > 5:
+            dlugie.append(slowo)
+        else:
+            krotkie.append(slowo)
+            
+    return dlugie, krotkie
+
+wyrazy = ["Kot", "Programowanie", "Pies", "Komputer"]
+duze, male = segreguj(wyrazy)
+print(f"Długie: {duze}")
+print(f"Krótkie: {male}")</code></pre>
+                </details>
+                <button class="task-done-btn" onclick="markTaskAsDone(this, 'task-5', 3)">✓ Oznacz jako zakończone</button>
+            </div>
+        </section>
+
+
+        <!-- WIDOK ZADAŃ DLA WIELKIEGO FINAŁU (SEKCJA 6) -->
+        <section id="task-6" class="task-view hidden">
+            <button class="close-topic-btn" onclick="closeTopic()">← Wróć do listy modułów</button>
+            <h2>Podsumowanie</h2>
+            <p class="intro-text">Oto ostateczny test sprawdzający całą Twoją dotychczasową wiedzę. Połącz klocki, które poznałeś we wcześniejszych modułach w jeden działający program!</p>
+
+            <div class="task-block" style="border: 2px solid #c82333; background-color: #fff9fa;">
+                <h3 style="color: #c82333;">Zadanie: Raport HR</h3>
+                <p>Napisz funkcję <code>raport_HR(pracownicy: list)</code>. <br>
+                <code>baza = [" jAn#KOWALSKI#5000,50 ", " aNNA#noWAK#6000,00 ", "PIOTR#Zyla#4500,00"]</code>
+                <br><br>
+                <strong>Zadania do zrobienia:</strong><br>
+                1. Utwórz dwie listy: <code>kobiety</code> i <code>mezczyzni</code>.<br>
+                2. Pętlą podziel dane po '#'.<br>
+                3. Wyczyść imię i nazwisko (spacje, duże litery).<br>
+                4. Wyczyść pensję i zrób z niej float (zamień przecinek na kropkę).<br>
+                5. Sprawdź płeć (ostatnia litera 'a').<br>
+                6. Zbuduj f-string: <em>"Jan Kowalski zarabia 5000.5 PLN"</em> i dodaj do odpowiedniej listy.<br>
+                7. Zwróć obie listy i wypisz na ekranie.</p>
+                <details class="solution">
+                    <summary>Pokaż przykładowe rozwiązanie</summary>
+                    <pre><code>def raport_HR(pracownicy: list):
+    kobiety = []
+    mezczyzni = []
+    
+    for osoba in pracownicy:
+        imie_sur, nazwisko_sur, pensja_sur = osoba.split('#')
+        
+        imie = imie_sur.strip().capitalize()
+        nazwisko = nazwisko_sur.strip().capitalize()
+        pensja = float(pensja_sur.strip().replace(',', '.'))
+        
+        wizytowka = f"{imie} {nazwisko} zarabia {pensja} PLN"
+        
+        if imie[-1].lower() == 'a':
+            kobiety.append(wizytowka)
+        else:
+            mezczyzni.append(wizytowka)
+            
+    return kobiety, mezczyzni
+
+baza = ["  jAn#KOWALSKI#5000,50 ", "  aNNA#noWAK#6000,00  ", "PIOTR#Zyla#4500,00"]
+lista_k, lista_m = raport_HR(baza)
+
+print("--- RAPORT KOBIET ---")
+for k in lista_k: print(k)
+
+print("\n--- RAPORT MĘŻCZYZN ---")
+for m in lista_m: print(m)</code></pre>
+                </details>
+                <button class="task-done-btn" onclick="markTaskAsDone(this, 'task-6', 1)">✓ Oznacz Wielki Finał jako zakończony!</button>
+            </div>
+        </section>
+
+    </main>
+</body>
+</html>

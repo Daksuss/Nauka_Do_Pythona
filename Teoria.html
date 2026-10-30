@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teoria - Python</title>
+    <link rel="stylesheet" href="teoria.css">
+</head>
+<body>
+
+    <header class="top-bar">
+        <a href="index.html" class="back-btn">← Wróć do menu</a>
+        <h1>Teoria</h1>
+    </header>
+    <main class="theory-list">
+        <details class="theory-item">
+            <summary>Podstawy, zmienne i wejście/wyjście</summary>
+            <div class="content-body">
+                <h2>Podstawy, zmienne i wejście/wyjście</h2>
+                
+                <p><strong>1. Zmienne i typy danych</strong><br>
+                Zmienna to takie "pudełko", w którym przechowujemy dane. W Pythonie nie musisz mówić z góry, jakiego typu jest to pudełko – język domyśli się sam. Najpopularniejsze typy to tekst (<code>str</code>), liczby całkowite (<code>int</code>) i ułamki (<code>float</code>). Jeśli chcesz sprawdzić typ zmiennej, używasz funkcji <code>type()</code>.</p>
+                
+                <pre><code># Tworzenie zmiennych
+produkt = 'Kawa'      # Typ string (tekst)
+ilosc = 3             # Typ int (liczba całkowita)
+cena = 12.50          # Typ float (liczba zmiennoprzecinkowa - uwaga: używamy kropki, nie przecinka!)
+
+# Sprawdzanie typu
+print(type(produkt))  # Wypisze: &lt;class 'str'&gt;</code></pre>
+
+                <h3>2. Komentarze w kodzie</h3>
+                <p>Komentarze to notatki zostawiane przez programistę. Interpreter Pythona całkowicie je ignoruje – nie wpływają one na działanie programu. Służą do tłumaczenia skomplikowanych fragmentów kodu lub tymczasowego wyłączania linii, których nie chcemy usuwać.</p>
+                <ul>
+                    <li><strong>Jednolinijkowe:</strong> Zaczynają się od znaku <code>#</code>. Wszystko, co znajduje się po tym znaku do końca linii, jest ignorowane.</li>
+                    <li><strong>Wielolinijkowe:</strong> Tworzy się je za pomocą potrójnych cudzysłowów (<code>"""</code>) lub potrójnych apostrofów (<code>'''</code>). Formalnie są to wielolinijkowe ciągi znaków (stringi), ale jeśli nie przypiszemy ich do żadnej zmiennej, Python potraktuje je jak komentarz.</li>
+                </ul>
+
+                <pre><code># To jest zwykły komentarz jednolinijkowy
+wynik = 10 + 5  # To jest komentarz w tej samej linii co kod (inline)
+
+# print("Ten tekst się nie wyświetli, bo kod jest zakomentowany")
+
+"""
+To jest komentarz
+wielolinijkowy.
+Możesz tu pisać całe wypracowania,
+a Python i tak to zignoruje.
+"""</code></pre>
+
+                <h3>3. Formatowanie tekstu (f-stringi)</h3>
+                <p>Aby ładnie wyświetlić tekst połączony ze zmiennymi, kiedyś używano plusa (np. <code>"Kupiłeś " + produkt</code>), ale wymagało to ręcznej zamiany liczb na tekst funkcją <code>str()</code>. Dziś używa się <strong>f-stringów</strong>. Wystarczy postawić literkę <code>f</code> przed cudzysłowem, a zmienne wrzucać w nawiasach klamrowych <code>{}</code>.</p>
+
+                <pre><code># Stary sposób (wymaga użycia str(), żeby połączyć tekst z liczbą):
+print("Kupiłeś " + str(ilosc) + " szt. produktu: " + produkt)
+
+# Nowy, lepszy sposób (f-string):
+print(f"Kupiłeś {ilosc} szt. produktu: {produkt}")</code></pre>
+
+                <h3>4. Matematyka i zmiana typu (rzutowanie)</h3>
+                <p>W Pythonie możesz łatwo dodawać (<code>+</code>), mnożyć (<code>*</code>), dzielić (<code>/</code>) czy potęgować (<code>**</code>). Czasami jednak pobierasz liczbę jako tekst. Aby móc na niej liczyć, musisz ją zamienić używając np. <code>float()</code> (dla ułamków) lub <code>int()</code> (dla całości).</p>
+
+                <pre><code>do_zaplaty = ilosc * cena
+print(f"Do zapłaty: {do_zaplaty} PLN")
+
+tekstowa_liczba = "50"
+# print(tekstowa_liczba + 10)  &lt;- To wyrzuci błąd! Nie można dodać tekstu do liczby.
+wynik = int(tekstowa_liczba) + 10  # Teraz zadziała (wynik to 60)</code></pre>
+
+                <h3>5. Pobieranie danych (input) i metody tekstowe</h3>
+                <p>Funkcja <code>input()</code> zatrzymuje program i czeka, aż użytkownik coś wpisze. Zawsze zwraca to jako tekst (<code>str</code>)!<br><br>
+                Często użytkownicy wpisują dane niedbale (np. stawiając spacje lub dając polski przecinek zamiast kropki w ułamku). Ratują nas wtedy tzw. metody tekstowe:</p>
+                <ul>
+                    <li><code>.strip()</code> – usuwa niewidoczne znaki i spacje z początku i końca tekstu.</li>
+                    <li><code>.replace('coś', 'na coś')</code> – podmienia znaki. W Pythonie ułamki mają kropkę, więc musimy zamieniać przecinki na kropki.</li>
+                    <li><code>.split('znak')</code> – dzieli tekst na kilka mniejszych zmiennych na podstawie wybranego znaku (np. średnika).</li>
+                </ul>
+
+                <pre><code># Przypisywanie wielu zmiennych w jednej linii
+a, b, c = 1, 2, 3
+
+# Złożony przykład z inputem:
+# Użytkownik wpisuje np.: "  2,5;10  "
+surowe_dane = input("Podaj wagę i cenę oddzielone średnikiem [waga;cena]: ")
+
+# Rozdzielamy tekst na dwie zmienne w miejscu średnika
+waga_str, cena_str = surowe_dane.split(';')
+
+# Czyścimy ze spacji (.strip) i zamieniamy polski przecinek na kropkę (.replace)
+waga = float(waga_str.strip().replace(',', '.'))
+cena = float(cena_str.strip().replace(',', '.'))
+
+print(f"Waga: {waga} kg, Cena: {cena} zł")</code></pre>
+            </div>
+        </details>
+        <!-- ELEMENT 2 -->
+        <details class="theory-item">
+            <summary>Praca z tekstem (Stringi): Wielkość liter, Długość i Wycinanie</summary>
+            <div class="content-body">
+                <h2>Praca z tekstem (Stringi): Wielkość liter, Długość i Wycinanie</h2>
+                
+                <p><strong>1. Zmiana wielkości liter</strong><br>
+                Python oferuje wbudowane metody do szybkiej zmiany wielkości liter w tekstach. Jest to szczególnie przydatne podczas pobierania danych od użytkownika (np. przez <code>input()</code>), ponieważ nie wiemy, czy ktoś wpisze swoje imię z małej, czy z dużej litery.</p>
+                
+                <ul>
+                    <li><code>.capitalize()</code> – Zmienia tylko pierwszą literę całego tekstu na dużą, resztę na małe.</li>
+                    <li><code>.title()</code> – Zmienia pierwszą literę <strong>każdego słowa</strong> na dużą (przydatne np. do imion i nazwisk).</li>
+                    <li><code>.upper()</code> – Zamienia absolutnie wszystkie litery na DUŻE.</li>
+                    <li><code>.lower()</code> – Zamienia absolutnie wszystkie litery na małe (świetne m.in. do adresów e-mail).</li>
+                </ul>
+
+                <pre><code>ksiazka = "władca PIERŚCIENI"
+
+print(ksiazka.capitalize()) # Wypisze: Władca pierścieni
+print(ksiazka.title())      # Wypisze: Władca Pierścieni
+print(ksiazka.upper())      # Wypisze: WŁADCA PIERŚCIENI
+print(ksiazka.lower())      # Wypisze: władca pierścieni</code></pre>
+
+                <h3>2. Sprawdzanie długości tekstu - funkcja len()</h3>
+                <p>Zanim zaczniemy wyciągać literki z tekstu, często musimy wiedzieć, z ilu w ogóle znaków się on składa. Służy do tego wbudowana funkcja <code>len()</code> (skrót od angielskiego słowa <em>length</em>, czyli długość). Co ważne, <code>len()</code> liczy absolutnie wszystkie znaki, łącznie ze spacjami i znakami interpunkcyjnymi!</p>
+
+                <pre><code>napis = "Ala ma kota"
+dlugosc_napisu = len(napis)
+
+print(f"Ten tekst składa się z {dlugosc_napisu} znaków.") 
+# Wypisze 11 (bo 9 liter + 2 spacje)</code></pre>
+
+                <h3>3. Indeksowanie, czyli wyciąganie pojedynczych znaków</h3>
+                <p>Każdy znak w tekście ma swój przypisany numer (indeks). <strong>Bardzo ważne: w Pythonie zawsze zaczynamy liczenie od zera!</strong> Aby wyciągnąć literę, podajemy jej indeks w nawiasach kwadratowych <code>[]</code> zaraz za nazwą zmiennej.</p>
+                <p>Python pozwala też na indeksowanie ujemne – pozwala to odwoływać się do liter od końca. Indeks <code>-1</code> to zawsze ostatnia litera.</p>
+
+                <pre><code>haslo = "Kryptografia"
+# K r y p t o g r a f i a
+# 0 1 2 3 4 5 6 7 8 9 10 11 (Indeksy)
+
+print(haslo[0])    # Wypisze: K (pierwszy znak)
+print(haslo[4])    # Wypisze: t (piąty znak)
+
+print(haslo[-1])   # Wypisze: a (ostatni znak)
+print(haslo[-2])   # Wypisze: i (przedostatni znak)</code></pre>
+
+                <h3>4. Krojenie (Slicing) - wyciąganie fragmentów tekstu</h3>
+                <p>Krojenie pozwala wyciąć kawałek tekstu (np. tylko pierwsze 5 liter). Używamy do tego nawiasów kwadratowych, w których podajemy wartości przedzielone dwukropkiem, według schematu: <code>[start : stop : krok]</code>.</p>
+                <ul>
+                    <li><strong>start</strong> – od którego indeksu zaczynamy wycinać (włącznie).</li>
+                    <li><strong>stop</strong> – na którym indeksie kończymy wycinać (<strong>wyłącznie</strong> – ten znak już nie wejdzie do wyniku).</li>
+                    <li><strong>krok</strong> – co ile znaków "przeskakujemy" (domyślnie 1, można pominąć).</li>
+                </ul>
+
+                <pre><code>tekst = "Programowanie"
+
+# Wycinanie od - do
+print(tekst[0:7])    # Wypisze: Program (od indeksu 0 do 6 włącznie)
+print(tekst[3:7])    # Wypisze: gram
+
+# Pomijanie wartości (domyślny start to 0, domyślny stop to koniec tekstu)
+print(tekst[:7])     # Wypisze: Program (to samo co [0:7])
+print(tekst[7:])     # Wypisze: owanie (od 7. indeksu do samego końca)
+
+# Wyjście poza zakres - Python jest mądry i nie wyrzuci błędu
+print(tekst[7:100])  # Wypisze: owanie (dojdzie do końca i bezpiecznie się zatrzyma)
+
+# Użycie "kroku"
+print(tekst[0:8:2])  # Wypisze: Porm (Z słowa "Programo" bierze co drugą literę)
+
+# Haczyk: Jak obrócić tekst tyłem do przodu? 
+# Pomijamy start i stop, a jako krok dajemy -1 (czytaj od tyłu)
+print(tekst[::-1])   # Wypisze: einawoimargorP</code></pre>
+            </div>
+        </details>
+
+       <!-- ELEMENT 3 -->
+        <details class="theory-item">
+            <summary>Listy, Pętle i Podejmowanie Decyzji (If)</summary>
+            <div class="content-body">
+                <h2>Listy, Pętle i Podejmowanie Decyzji (If)</h2>
+                
+                <p><strong>1. Listy - tworzenie i dodawanie elementów</strong><br>
+                Podczas gdy zwykła zmienna to małe pudełko na jedną rzecz, <strong>lista</strong> to pojemny karton, do którego możemy wrzucić wiele różnych elementów. Pustą listę tworzymy za pomocą pustych nawiasów kwadratowych <code>[]</code> lub funkcji <code>list()</code>.</p>
+                
+                <ul>
+                    <li><code>.append(element)</code> – Dodaje <strong>jeden</strong> nowy element na sam koniec listy.</li>
+                    <li><code>.extend([lista_elementów])</code> – Służy do dodania <strong>wielu</strong> elementów z innej listy na koniec naszej obecnej listy.</li>
+                </ul>
+
+                <pre><code>koszyk = []  # Tworzymy pustą listę (równie dobrze mogłoby być: koszyk = list())
+
+# Dodajemy pojedyncze elementy
+koszyk.append("Mleko")
+koszyk.append("Chleb")
+
+# Dodajemy kilka elementów naraz
+koszyk.extend(["Masło", "Ser", "Kawa"])
+
+print(koszyk) 
+# Wypisze: ['Mleko', 'Chleb', 'Masło', 'Ser', 'Kawa']</code></pre>
+
+                <h3>2. Indeksowanie list (wyciąganie danych)</h3>
+                <p>Listy kroi się i indeksuje dokładnie tak samo jak tekst! Liczymy od zera, możemy używać wartości ujemnych i podawać zakresy <code>[start:stop:krok]</code>. <br>
+                <strong>Ciekawostka (Wielokrotne indeksowanie):</strong> Jeśli wyciągniemy z listy słowo, możemy od razu postawić drugi nawias, żeby wyciągnąć konkretną literę z tego słowa!</p>
+
+                <pre><code>magazyn = ["Klawiatura", "Myszka", "Monitor", "Drukarka"]
+
+print(magazyn[0])        # Wypisze: Klawiatura
+print(magazyn[-1])       # Wypisze: Drukarka (ostatni element)
+print(magazyn[0:4:2])    # Wypisze: ['Klawiatura', 'Monitor'] (co drugi element)
+
+# Magia wielokrotnego indeksowania:
+# magazyn[1] to "Myszka". Jeśli dodamy [0], wyciągniemy pierwszą literę z "Myszka"
+print(magazyn[1][0])     # Wypisze: M</code></pre>
+
+                <h3>3. Logika i Instrukcje Warunkowe (if / elif / else)</h3>
+                <p>Programy muszą podejmować decyzje. Robimy to za pomocą bloków warunkowych. Pamiętaj, że w Pythonie <strong>wcięcia (tzw. tabulacje) są obowiązkowe</strong> – to one mówią Pythonowi, co należy do danego bloku!</p>
+                <p><strong>Przydatne operatory do sprawdzania warunków:</strong></p>
+                <ul>
+                    <li><code>==</code> (Dwa znaki równości) - Sprawdza, czy coś jest równe. (Uwaga: jeden znak <code>=</code> służy do przypisywania zmiennej, dwa <code>==</code> do zadawania pytania "czy jest równe?").</li>
+                    <li><code>!=</code> - Oznacza "nie jest równe" (różne od).</li>
+                    <li><code>in</code> - Sprawdza, czy element znajduje się w jakiejś liście lub tekście.</li>
+                </ul>
+
+                <pre><code>owoc = "Banan"
+dostepne_owoce = ["Jabłko", "Banan", "Gruszka"]
+
+if owoc == "Jabłko":
+    print("Wybrano jabłko.")
+elif owoc in dostepne_owoce:
+    # Ten blok wykona się, bo "Banan" jest na liście dostepne_owoce
+    print(f"Mamy {owoc} w magazynie!")
+elif owoc != "Cebula":
+    print("To na pewno nie jest cebula.")
+else:
+    # Else wykona się tylko wtedy, gdy żaden z powyższych warunków nie zostanie spełniony
+    print("Nie znamy tego produktu.")</code></pre>
+    
+                <p><em>Wskazówka:</em> Słowo kluczowe <code>pass</code> służy jako zapchajdziura. Jeśli masz instrukcję <code>if</code>, ale jeszcze nie wiesz, co tam napisać, wpisujesz <code>pass</code>, żeby Python nie wyrzucił błędu o braku kodu pod warunkiem.</p>
+
+                <h3>4. Pętla FOR (automatyczne sprawdzanie listy)</h3>
+                <p>Jeśli masz listę 1000 elementów i chcesz sprawdzić każdy z nich, nie musisz pisać 1000 razy tego samego kodu. Służy do tego pętla <code>for</code>. Działa ona na zasadzie "dla każdego elementu w liście zrób następującą rzecz:".</p>
+                
+                <p>Połączmy teraz wszystko w całość: Pętle, Listy, Metody z poprzedniej lekcji (jak <code>.capitalize()</code>) i instrukcje warunkowe!</p>
+
+                <pre><code>koszyk_klienta = ["woda", "jabłko", "mąka", "ryż"]
+produkty_na_wage = ["jabłko", "banan", "pomidor"]
+
+# Tłumaczenie: "Dla każdego 'produktu' z listy 'koszyk_klienta' zrób to co poniżej:"
+for produkt in koszyk_klienta:
+    
+    # Upewniamy się, że nazwa zaczyna się z dużej litery
+    czysty_produkt = produkt.capitalize()
+    
+    # 1. Sprawdzamy czy ostatnia litera to 'a'
+    if czysty_produkt[-1].lower() == 'a':
+        print(f"Kupiłeś: {czysty_produkt} (nazwa kończy się na literę A)")
+    else:
+        print(f"Kupiłeś: {czysty_produkt}")
+        
+    # 2. Sprawdzamy, czy produkt jest na liście towarów na wagę
+    if produkt.lower() in produkty_na_wage:
+        print(" -> Pamiętaj, aby położyć to na wadze!")</code></pre>
+            </div>
+        </details>
+       <!-- ELEMENT 4 -->
+        <details class="theory-item">
+            <summary>Krotki, Losowość i Zaawansowane Pętle (enumerate)</summary>
+            <div class="content-body">
+                <h2>Krotki, Losowość i Zaawansowane Pętle (enumerate)</h2>
+                
+                <p><strong>1. Krotki (Tuples)</strong><br>
+                Krotka to struktura danych bardzo podobna do listy, ale z jedną kluczową różnicą: <strong>jest niemutowalna</strong>. Oznacza to, że raz stworzonej krotki nie można zmienić (nie można do niej dodać ani usunąć elementów, jak robiliśmy to w listach przy użyciu np. <code>.append()</code>). Krotki tworzymy używając zwykłych nawiasów okrągłych <code>()</code>, a czasem nawet bez nich, oddzielając elementy przecinkami.</p>
+                
+                <pre><code># Tworzenie krotki z nawiasami
+dni_tygodnia = ("poniedziałek", "wtorek", "środa")
+
+# Tworzenie krotki bez nawiasów (Python domyśli się, że to krotka)
+miesiace = 'styczeń', 'luty', 'marzec'
+
+print(miesiace[1]) # Możemy z niej wyciągać dane jak z listy (wypisze: luty)
+# miesiace[0] = "styczen" -> To wyrzuci błąd! Krotki nie można modyfikować.</code></pre>
+
+                <h3>2. Moduł random i losowanie liczb</h3>
+                <p>Aby nasz program przestał być przewidywalny i mógł np. rzucić kostką, musimy zaimportować wbudowany moduł <code>random</code>. Aby wylosować liczbę całkowitą z podanego przedziału (włącznie z wartościami granicznymi), używamy funkcji <code>random.randint(od, do)</code>.</p>
+
+                <pre><code>import random # Zawsze umieszczamy importy na samej górze kodu!
+
+# Losujemy temperaturę między -10 a 30 stopni
+dzisiejsza_temperatura = random.randint(-10, 30)
+print(f"Dziś jest {dzisiejsza_temperatura} stopni.")</code></pre>
+
+                <h3>3. Funkcja enumerate() - jednoczesne liczenie i wyciąganie</h3>
+                <p>Kiedy iterujesz (przechodzisz) przez listę pętlą <code>for</code>, zazwyczaj dostajesz sam element. Ale co, jeśli potrzebujesz wiedzieć, na którym miejscu na liście jest ten element (czyli potrzebujesz jego indeksu)? Zamiast tworzyć osobne liczniki, używamy wspaniałej funkcji <code>enumerate()</code>, która za jednym zamachem zwraca <strong>numer indeksu</strong> oraz <strong>wartość</strong>.</p>
+
+                <pre><code>zwyciezcy = ["Ania", "Tomek", "Kasia"]
+
+# Zamiast: for osoba in zwyciezcy:
+for numer, osoba in enumerate(zwyciezcy):
+    print(f"Miejsce {numer}: {osoba}")
+    
+# Wypisze:
+# Miejsce 0: Ania
+# Miejsce 1: Tomek
+# Miejsce 2: Kasia</code></pre>
+
+                <h3>4. Zaokrąglanie i złożone warunki logiczne</h3>
+                <p>W programach finansowych czy naukowych często pojawiają się długie ułamki. Do ich okiełznania służy funkcja <code>round(liczba, miejsca_po_przecinku)</code>.</p>
+                <p>Gdy chcemy sprawdzić dwa warunki naraz, używamy operatora <code>and</code> (i). Oba warunki muszą być prawdziwe (True), by kod się wykonał.</p>
+
+                <pre><code>wynik_z_testu = 85.6789
+wynik_zaokraglony = round(wynik_z_testu, 2)
+print(wynik_zaokraglony) # Wypisze: 85.68
+
+# Użycie "and" do sprawdzania przedziałów:
+if wynik_zaokraglony &gt; 80 and wynik_zaokraglony &lt;= 90:
+    print("Otrzymujesz ocenę bardzo dobrą!")</code></pre>
+    
+                <h3>5. Wartość bezwzględna - abs()</h3>
+                <p>Czasami interesuje nas tylko "odległość", a nie to czy jest na minusie. Na przykład, jeśli temperatura spadła o 5 stopni, wynik odejmowania wynosi -5. Żeby pozbyć się tego minusa i wypisać ładne "spadło o 5", używamy funkcji <code>abs()</code> (od absolute value).</p>
+
+                <pre><code>roznica_temperatur = -5
+print(f"Temperatura zmieniła się o {abs(roznica_temperatur)} stopni.")
+# Wypisze: Temperatura zmieniła się o 5 stopni.</code></pre>
+            </div>
+        </details>
+
+       <!-- ELEMENT 5 -->
+        <details class="theory-item">
+            <summary>Własne Funkcje (def), Typowanie i Zwracanie Wartości</summary>
+            <div class="content-body">
+                <h2>Własne Funkcje (def), Typowanie i Zwracanie Wartości</h2>
+                
+                <p><strong>1. Po co nam własne funkcje?</strong><br>
+                Gdy ten sam fragment kodu powtarza się w naszym programie wiele razy, zamiast go kopiować, zamykamy go we własnej funkcji. Tworzymy w ten sposób własne, gotowe do użycia narzędzie. Do definiowania funkcji używamy słowa kluczowego <code>def</code>. Aby funkcja "oddała" nam wynik swojej pracy z powrotem, używamy słowa <code>return</code>.</p>
+                
+                <pre><code># Definiujemy prostą funkcję
+def dodaj_podatek(cena_netto):
+    cena_brutto = cena_netto * 1.23
+    return round(cena_brutto, 2)
+
+# Używamy naszego nowego narzędzia:
+kalkulacja_1 = dodaj_podatek(100)
+kalkulacja_2 = dodaj_podatek(250.50)
+
+print(f"Cena z podatkiem: {kalkulacja_1} zł") # Wypisze: 123.0 zł</code></pre>
+
+                <h3>2. Podpowiedzi typów (Type Hints)</h3>
+                <p>Zauważysz czasem, że przy nazwie parametru w funkcji dopisuje się dwukropek i typ, np. <code>:str</code> albo <code>:list</code>. Są to tzw. "type hints". Pamiętaj: w Pythonie one <strong>niczego nie blokują</strong>! Jeśli napiszesz, że funkcja wymaga tekstu, a ktoś wrzuci tam liczbę, program i tak spróbuje ruszyć. Służą one tylko jako "notatka" dla innych programistów i podpowiedź dla edytora kodu (np. PyCharm), żeby wiedział, co tam wpisać.</p>
+
+                <pre><code># Zapis :str mówi nam, że oczekujemy tekstu (stringa)
+def wyczysc_tekst(tekst: str):
+    # capitalize() sprawia, że tylko pierwsza litera będzie duża
+    return tekst.strip().capitalize()
+
+brudne_haslo = "   aKAdemia   "
+czyste_haslo = wyczysc_tekst(brudne_haslo)
+print(czyste_haslo) # Wypisze: Akademia</code></pre>
+
+                <h3>3. Zwracanie wielu wartości naraz</h3>
+                <p>To jedna z supermocy Pythona. W wielu językach funkcja może zwrócić tylko jedną rzecz na raz. W Pythonie możesz po słowie <code>return</code> wymienić po przecinku kilka zmiennych, a następnie "rozpakować" je podczas wywoływania funkcji!</p>
+
+                <pre><code>def statystyki_cen(cena_1, cena_2):
+    suma = cena_1 + cena_2
+    roznica = abs(cena_1 - cena_2)
+    
+    # Funkcja zwraca dwie rzeczy w postaci krotki!
+    return suma, roznica
+
+# Przy wywoływaniu funkcji "rozpakowujemy" wynik do dwóch zmiennych
+lacznie, dystans = statystyki_cen(100, 150)
+
+print(f"Suma to {lacznie}, a różnica wynosi {dystans}")</code></pre>
+
+                <h3>4. Funkcje i modyfikowanie list</h3>
+                <p>Funkcje mogą też wykonywać czarną robotę, np. segregować dane z jednej dużej listy do dwóch mniejszych. Możemy wewnątrz funkcji stworzyć puste listy, zapełnić je za pomocą <code>.append()</code> i na koniec je zwrócić.</p>
+
+                <pre><code>def segreguj_produkty(lista_produktow: list):
+    jedzenie = []
+    elektronika = []
+    
+    for produkt in lista_produktow:
+        # Zła praktyka: sprawdzamy konkretne słowa "
+    </main>
+</body>
+</html>

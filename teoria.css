@@ -1,0 +1,121 @@
+/* --- RESET I BAZA --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #f8f9fa;
+    color: #333;
+}
+
+/* --- HEADER Z PRZYCISKIEM POWROTU --- */
+.top-bar {
+    background-color: #2e7d32; /* Ciemna, leśna zieleń */
+    color: white;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.back-btn {
+    position: absolute;
+    left: 20px;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    background-color: rgba(255, 255, 255, 0.2);
+    padding: 8px 15px;
+    border-radius: 20px;
+    transition: background 0.3s;
+}
+
+.back-btn:hover {
+    background-color: rgba(255, 255, 255, 0.4);
+}
+
+/* --- LISTA ROZWIJANA (ACCORDION) --- */
+.theory-list {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.theory-item {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    transition: box-shadow 0.2s;
+}
+
+.theory-item:hover {
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+.theory-item summary {
+    padding: 20px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+    list-style: none;
+    user-select: none;
+}
+
+/* Własna strzałka do listy */
+.theory-item summary::before {
+    content: '▶ ';
+    color: #4caf50; /* Jasna zieleń dla strzałki */
+    display: inline-block;
+    margin-right: 10px;
+    transition: transform 0.3s ease;
+}
+
+.theory-item[open] summary::before {
+    transform: rotate(90deg);
+}
+
+/* --- WNĘTRZE TEORII --- */
+.content-body {
+    padding: 0 20px 20px 20px;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+.content-body h2 {
+    color: #2e7d32; /* Ciemna zieleń dla nagłówków */
+    margin-top: 10px;
+    margin-bottom: 15px;
+    font-size: 1.5rem;
+}
+
+.content-body h3 {
+    margin-top: 20px;
+    margin-bottom: 10px;
+    color: #2e7d32;
+}
+
+/* --- STYLIZACJA BLOKÓW KODU --- */
+pre {
+    background-color: #1e1e1e;
+    color: #d4d4d4;
+    padding: 20px;
+    border-radius: 8px;
+    overflow-x: auto;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1rem;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.5);
+    margin-top: 15px;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}

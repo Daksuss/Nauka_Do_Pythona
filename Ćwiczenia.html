@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ćwiczenia - Python</title>
+    <link rel="stylesheet" href="cwiczenia.css">
+    <!-- Podpinamy skrypt, który obsłuży sprawdzanie i statusy -->
+    <script src="script.js" defer></script>
+</head>
+<body>
+
+    <header class="top-bar">
+        <a href="index.html" class="back-btn">← Wróć do menu</a>
+        <h1>Ćwiczenia z lukami</h1>
+    </header>
+
+    <main class="exercises-container">
+        
+        <!-- WIDOK MENU GŁÓWNEGO ĆWICZEŃ -->
+        <section id="menu-view">
+            <h2>Wybierz temat do ćwiczeń</h2>
+            <div class="topic-grid">
+                
+                <!-- Karta tematu 1 -->
+                <div class="topic-card" onclick="openTopic('topic-1')">
+                    <div class="topic-info">
+                        <h3>1. Podstawy, zmienne i wejście/wyjście</h3>
+                        <!-- Tu skrypt będzie zmieniał status -->
+                        <span class="status pending" id="badge-topic-1">Oczekujące</span>
+                    </div>
+                    <div class="topic-arrow">▶</div>
+                </div>
+
+                <!-- Karta tematu 2 -->
+                <div class="topic-card" onclick="openTopic('topic-2')">
+                    <div class="topic-info">
+                        <h3>2. Praca z tekstem: Wielkość, Długość i Wycinanie</h3>
+                        <span class="status pending" id="badge-topic-2">Oczekujące</span>
+                    </div>
+                    <div class="topic-arrow">▶</div>
+                </div>
+
+                <!-- Karty 3, 4 i 5 -->
+                <div class="topic-card" onclick="openTopic('topic-3')">
+                    <div class="topic-info">
+                        <h3>3. Listy, Pętle i Podejmowanie Decyzji (If)</h3>
+                        <span class="status pending" id="badge-topic-3">Oczekujące</span>
+                    </div>
+                    <div class="topic-arrow">▶</div>
+                </div>
+
+                <div class="topic-card" onclick="openTopic('topic-4')">
+                    <div class="topic-info">
+                        <h3>4. Krotki, Losowość i Zaawansowane Pętle</h3>
+                        <span class="status pending" id="badge-topic-4">Oczekujące</span>
+                    </div>
+                    <div class="topic-arrow">▶</div>
+                </div>
+
+                <div class="topic-card" onclick="openTopic('topic-5')">
+                    <div class="topic-info">
+                        <h3>5. Własne Funkcje (def), Typowanie i Zwracanie</h3>
+                        <span class="status pending" id="badge-topic-5">Oczekujące</span>
+                    </div>
+                    <div class="topic-arrow">▶</div>
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- WIDOK ZADAŃ DLA TEMATU 1 -->
+        <section id="topic-1" class="exercise-view hidden">
+            <button class="close-topic-btn" onclick="closeTopic()">← Wróć do listy tematów</button>
+            <h2>1. Podstawy, zmienne i wejście/wyjście</h2>
+            <p>Uzupełnij luki w kodzie, wpisując odpowiednie słowa kluczowe, znaki lub nazwy funkcji.</p>
+
+            <div class="exercise-block">
+                <p><strong>Zadanie 1:</strong> Sprawdź typ zmiennej <code>wiek</code> i go wyświetl.</p>
+                <pre><code>wiek = 25
+print(<input type="text" class="blank" data-answer="type" size="4">(wiek))</code></pre>
+            </div>
+
+            <div class="exercise-block">
+                <p><strong>Zadanie 2:</strong> Użyj f-stringa, aby połączyć tekst ze zmienną.</p>
+                <pre><code>imie = "Anna"
+print(<input type="text" class="blank" data-answer="f" size="1">"Cześć, mam na imię {imie}")</code></pre>
+            </div>
+
+            <div class="exercise-block">
+                <p><strong>Zadanie 3:</strong> Zamień tekstową liczbę na ułamek (liczbę zmiennoprzecinkową).</p>
+                <pre><code>cena_tekst = "15.50"
+cena = <input type="text" class="blank" data-answer="float" size="5">(cena_tekst)</code></pre>
+            </div>
+
+            <div class="exercise-block">
+                <p><strong>Zadanie 4:</strong> Pobierz dane od użytkownika z konsoli.</p>
+                <pre><code>ulubiony_kolor = <input type="text" class="blank" data-answer="input" size="5">("Podaj swój kolor: ")</code></pre>
+            </div>
+
+            <div class="exercise-block">
+                <p><strong>Zadanie 5:</strong> Usuń białe znaki z początku i końca tekstu, a następnie podmień polski przecinek na kropkę.</p>
+                <pre><code>surowe_dane = "   12,99   "
+czyste_dane = surowe_dane.<input type="text" class="blank" data-answer="strip" size="5">().<input type="text" class="blank" data-answer="replace" size="7">(',', '.')</code></pre>
+            </div>
+
+            <!-- Przycisk sprawdzający formularz -->
+            <button class="check-btn" onclick="checkAnswers('topic-1')">Sprawdź odpowiedzi</button>
+            <p class="feedback-msg" id="feedback-topic-1"></p>
+        </section>
+
+
+        <!-- WIDOK ZADAŃ DLA TEMATU 2 -->
+        <section id="topic-2" class="exercise-view hidden">
+            <button class="close-topic-btn" onclick="closeTopic()">← Wróć do listy tematów</button>
+            <h2>2. Praca z tekstem: Wielkość, Długość i Wycinanie</h2>
+            <p>Uzupełnij luki w kodzie, wpisując odpowiednie metody, funkcje, indeksy lub parametry krojenia.</p>
+
+            <div class="exercise-block">
+                <p><strong>Zadanie 1:</strong> Zamień cały adres e-mail na małe litery, aby uniknąć problemów przy logowaniu.</p>
+                <pre><code>email = "Jan.Kowalski@Domain.COM"
+email_czysty = email.<input type="text" class="blank" data-answer="lower" size="5">()</code></pre>
+            </div>
+
+            <div class="exercise-block">
+                <p><strong>Zadanie 2:</strong> Formatuj imię i nazwisko tak, aby każde ze słów zaczynało się wielką literą.</p>
+                <pre><code>autor = "adam mickiewicz"
+autor_poprawny = autor.<input type="text" class="blank" data-answer="title" size="5">()</code></pre>
+            </div>
+
+            <div class="exercise-block">
+                <p><strong>Zadanie 3:</strong> Sprawdź długość (ilość wszystkich znaków) wpisanego hasła.</p>
+                <pre><code>haslo = "super_tajne_haslo123"
+ile_znakow = <input type="text" class="blank" data-answer="len" size="3">(haslo)</code></pre>
+            </div>
+
+            <div class="exercise-block">
+                <p><strong>Zadanie 4:</strong> Pobierz ostatni znak ze zmiennej <code>kod_pocztowy</code> używając indeksowania ujemnego.</p>
+                <pre><code>kod_pocztowy = "00-950"
+ostatni_znak = kod_pocztowy[<input type="text" class="blank" data-answer="-1" size="2">]</code></pre>
+            </div>
+
+            <div class="exercise-block">
+                <p><strong>Zadanie 5:</strong> Wyetnij pierwsze 3 litery ze słowa "Warszawa" (od indeksu 0 do 3 wyłączenie).</p>
+                <pre><code>miasto = "Warszawa"
+skrot = miasto[0:<input type="text" class="blank" data-answer="3" size="1">]</code></pre>
+            </div>
+
+            <div class="exercise-block">
+                <p><strong>Zadanie 6:</strong> Odwróć cały tekst tyłem do przodu za pomocą krojenia (slicing) z odpowiednim krokiem.</p>
+                <pre><code>napis = "Python"
+odwrocony = napis[::<input type="text" class="blank" data-answer="-1" size="2">]</code></pre>
+            </div>
+
+            <div class="exercise-block">
+                <p><strong>Zadanie 7:</strong> Zmień tylko pierwszą literę całego zdania na dużą.</p>
+                <pre><code>powitanie = "witaj w naszym serwisie"
+poprawne = powitanie.<input type="text" class="blank" data-answer="capitalize" size="10">()</code></pre>
+            </div>
+
+            <!-- Przycisk sprawdzający odpowiedzi w tym temacie -->
+            <button class="check-btn" onclick="checkAnswers('topic-2')">Sprawdź odpowiedzi</button>
+            <p class="feedback-msg" id="feedback-topic-2"></p>
+        </section>
+        
+        <!-- WIDOK ZADAŃ DLA TEMATU 3 -->
+        <section id="topic-3" class="exercise-view hidden">
+            <button class="close-topic-btn" onclick="closeTopic()">← Wróć do listy tematów</button>
+            <h2>3. Listy, Pętle i Podejmowanie Decyzji (If)</h2>
+            <p>Uzupełnij luki w kodzie, wpisując odpowiednie metody, operatory logiczne lub słowa kluczowe pętli.</p>
+
+            <div class="exercise-block">
+                <p><strong>Zadanie 1:</strong> Dodaj <strong>jeden</strong> nowy produkt (Cukier) na sam koniec pustego koszyka.</p>
+                <pre><code>koszyk = []
+koszyk.<input type="text" class="blank" data-answer="append" size="6">("Cukier")</code></pre>
+            </div>
+
+            <div class="exercise-block">
+                <p><strong>Zadanie 2:</strong> Dodaj <strong>wiele</strong> elementów do listy za jednym zamachem.</p>
+                <pre><code>lista_imion = ["Anna"]
+lista_imion.<input type="text" class="blank" data-answer="extend" size="6">(["Piotr", "Kasia", "Tomek"])</code></pre>
+            </div>
+
+            <div class="exercise-block">
+                <p><strong>Zadanie 3:</strong> Wyciągnij z listy drugie słowo ("Piotr"), a następnie pobierz z niego pierwszą literę ("P"). Pamiętaj, od jakiej cyfry zaczynamy liczyć!</p>
+                <pre><code>uczestnicy = ["Anna", "Piotr", "Kasia"]
+pierwsza_litera_piotra = uczestnicy[<input type="text" class="blank" data-answer="1" size="1">][<input type="text" class="blank" data-answer="0" size="1">]</code></pre>
+            </div>
+
+            <div class="exercise-block">
+                <p><strong>Zadanie 4:</strong> Uzupełnij warunek sprawdzający, czy imię żeńskie <strong>jest równe</strong> "Anna". Użyj odpowiedniego operatora porównania.</p>
+                <pre><code>imie = "Anna"
+if imie <input type="text" class="blank" data-answer="==" size="2"> "Anna":
+    print("Witaj Aniu!")</code></pre>
+            </div>
+
+            <div class="exercise-block">
+                <p><strong>Zadanie 5:</strong> Uzupełnij warunek, aby sprawdzić, czy wybrany owoc <strong>znajduje się w</strong> liście dostepnych owoców.</p>
+                <pre><code>owoc = "Banan"
+dostepne_owoce = ["Jabłko", "Banan", "Gruszka"]
+
+if owoc <input type="text" class="blank" data-answer="in" size="2"> dostepne_owoce:
+    print("Mamy to!")</code></pre>
+            </div>
+
+            <div class="exercise-block">
+                <p><strong>Zadanie 6:</strong> Stwórz pętlę iterującą po wszystkich imionach. Jeśli imię kończy się na "a", wypisz je, a jeśli nie – zignoruj to za pomocą "zapchajdziury".</p>
+                <pre><code><input type="text" class="blank" data-answer="for" size="3"> imie <input type="text" class="blank" data-answer="in" size="2"> lista_imion:
+    if imie[-1] == 'a':
+        print(imie)
+    else:
+        <input type="text" class="blank" data-answer="pass" size="4"></code></pre>
+            </div>
+
+            <!-- Przycisk sprawdzający odpowiedzi w tym temacie -->
+            <button class="check-btn" onclick="checkAnswers('topic-3')">Sprawdź odpowiedzi</button>
+            <p class="feedback-msg" id="feedback-topic-3"></p>
+        </section>
+        <!-- WIDOK ZADAŃ DLA TEMATU 4 -->
+        <section id="topic-4" class="exercise-view hidden">
+            <button class="close-topic-btn" onclick="closeTopic()">← Wróć do listy tematów</button>
+            <h2>4. Krotki, Losowość i Zaawansowane Pętle</h2>
+            <p>Uzupełnij luki w kodzie, wpisując odpowiednie funkcje, słowa kluczowe lub parametry.</p>
+
+            <div class="exercise-block">
+                <p><strong>Zadanie 1:</strong> Zaimportuj moduł do losowania, a następnie wylosuj liczbę całkowitą z przedziału od 1 do 10 (włącznie).</p>
+                <pre><code><input type="text" class="blank" data-answer="import" size="6"> random
+wylosowana = random.<input type="text" class="blank" data-answer="randint" size="7">(1, 10)</code></pre>
+            </div>
+
+            <div class="exercise-block">
+                <p><strong>Zadanie 2:</strong> Stwórz pętlę, która wyciągnie jednocześnie numer indeksu oraz nazwę miesiąca z krotki.</p>
+                <pre><code>miesiace = ("styczeń", "luty", "marzec")
+for numer, miesiac in <input type="text" class="blank" data-answer="enumerate" size="9">(miesiace):
+    print(numer, miesiac)</code></pre>
+            </div>
+
+            <div class="exercise-block">
+                <p><strong>Zadanie 3:</strong> Zaokrąglij średnią pensję do 2 miejsc po przecinku.</p>
+                <pre><code>srednia = 5678.9123
+srednia_zaokraglona = <input type="text" class="blank" data-answer="round" size="5">(srednia, <input type="text" class="blank" data-answer="2" size="1">)</code></pre>
+            </div>
+
+            <div class="exercise-block">
+                <p><strong>Zadanie 4:</strong> Uzupełnij warunek tak, aby sprawdzić, czy pensja jest większa niż 5000 <strong>i zarazem</strong> mniejsza lub równa 7000.</p>
+                <pre><code>pensja = 6000
+if pensja > 5000 <input type="text" class="blank" data-answer="and" size="3"> pensja <= 7000:
+    print("Pensja w normie.")</code></pre>
+            </div>
+
+            <div class="exercise-block">
+                <p><strong>Zadanie 5:</strong> Oblicz różnicę i pozbądź się znaku minus, używając wbudowanej funkcji wartości bezwzględnej.</p>
+                <pre><code>roznica = 4000 - 5000
+czysta_wartosc = <input type="text" class="blank" data-answer="abs" size="3">(roznica)
+print(f"Wynagrodzenie spadło o {czysta_wartosc}") 
+# Wynik: Wynagrodzenie spadło o 1000</code></pre>
+            </div>
+
+            <!-- Przycisk sprawdzający odpowiedzi w tym temacie -->
+            <button class="check-btn" onclick="checkAnswers('topic-4')">Sprawdź odpowiedzi</button>
+            <p class="feedback-msg" id="feedback-topic-4"></p>
+        </section>
+        <!-- WIDOK ZADAŃ DLA TEMATU 5 -->
+        <section id="topic-5" class="exercise-view hidden">
+            <button class="close-topic-btn" onclick="closeTopic()">← Wróć do listy tematów</button>
+            <h2>5. Własne Funkcje (def), Typowanie i Zwracanie</h2>
+            <p>Uzupełnij luki w kodzie, wpisując słowa kluczowe funkcji, typowanie lub metody pomocnicze.</p>
+
+            <div class="exercise-block">
+                <p><strong>Zadanie 1:</strong> Zdefiniuj własną funkcję o nazwie <code>policz_brutto</code> i zwróć wyliczony wynik z powrotem.</p>
+                <pre><code><input type="text" class="blank" data-answer="def" size="3"> policz_brutto(cena_netto):
+    wynik = cena_netto * 1.23
+    <input type="text" class="blank" data-answer="return" size="6"> round(wynik, 2)</code></pre>
+            </div>
+
+            <div class="exercise-block">
+                <p><strong>Zadanie 2:</strong> Dodaj podpowiedź typu (type hint), informującą, że parametr <code>tekst</code> powinien być ciągiem znaków (stringiem).</p>
+                <pre><code>def wyczysc_dane(tekst: <input type="text" class="blank" data-answer="str" size="3">):
+    return tekst.strip().capitalize()</code></pre>
+            </div>
+
+            <div class="exercise-block">
+                <p><strong>Zadanie 3:</strong> Funkcja zwraca dwie wartości naraz. Rozpakuj je do dwóch zmiennych podczas wywoływania funkcji.</p>
+                <pre><code>def przelicz(a, b):
+    return a + b, a - b
+
+suma_val, roznica_val = <input type="text" class="blank" data-answer="przelicz" size="8">(10, 5)</code></pre>
+            </div>
+
+            <div class="exercise-block">
+                <p><strong>Zadanie 4:</strong> Użyj odpowiedniej metody, aby rozdzielić ciąg znaków w miejscu separatora <code>#</code>.</p>
+                <pre><code>produkt_dane = "chleb#4.50"
+nazwa, cena = produkt_dane.<input type="text" class="blank" data-answer="split" size="5">('#')</code></pre>
+            </div>
+
+            <div class="exercise-block">
+                <p><strong>Zadanie 5:</strong> Uzupełnij funkcję segregującą – dodaj wyselekcjonowane imię na sam koniec nowej listy.</p>
+                <pre><code>def dodaj_do_listy(imie, lista_zenska, lista_meska):
+    if imie[-1] == 'a':
+        lista_zenska.<input type="text" class="blank" data-answer="append" size="6">(imie)
+    else:
+        lista_meska.append(imie)</code></pre>
+            </div>
+
+            <!-- Przycisk sprawdzający odpowiedzi w tym temacie -->
+            <button class="check-btn" onclick="checkAnswers('topic-5')">Sprawdź odpowiedzi</button>
+            <p class="feedback-msg" id="feedback-topic-5"></p>
+        </section>
+
+    </main>
+</body>
+</html>

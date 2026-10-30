@@ -1,0 +1,43 @@
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+body { background-color: #f8f9fa; color: #333; min-height: 100vh; display: flex; flex-direction: column; }
+
+/* Górna belka - miodowy złoty */
+.top-bar { background-color: #d48806; color: white; padding: 20px; display: flex; justify-content: center; align-items: center; position: relative; }
+.back-btn { position: absolute; left: 20px; color: white; text-decoration: none; font-weight: bold; background-color: rgba(255, 255, 255, 0.2); padding: 8px 15px; border-radius: 20px; }
+.back-btn:hover { background-color: rgba(255, 255, 255, 0.4); }
+
+.exercises-container { max-width: 900px; margin: 40px auto; padding: 0 20px; width: 100%; }
+
+/* Menu Główne Tematów */
+.topic-grid { display: flex; flex-direction: column; gap: 15px; margin-top: 20px; }
+.topic-card { background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); display: flex; justify-content: space-between; align-items: center; cursor: pointer; transition: transform 0.2s; }
+.topic-card:hover { transform: translateX(10px); box-shadow: 0 4px 8px rgba(0,0,0,0.15); }
+.topic-info h3 { margin-bottom: 10px; color: #b06d04; /* Ciemniejszy złoty dla czytelności */ }
+.topic-arrow { color: #d48806; font-weight: bold; }
+
+/* Statusy (Odznaki) */
+.status { padding: 5px 12px; border-radius: 15px; font-size: 0.9rem; font-weight: bold; color: white; }
+.status.pending { background-color: #6c757d; } 
+.status.in-progress { background-color: #fd7e14; } 
+.status.completed { background-color: #28a745; } 
+
+/* Widok Ćwiczeń */
+.hidden { display: none !important; }
+.close-topic-btn { background: none; border: none; color: #b06d04; font-size: 1.1rem; font-weight: bold; cursor: pointer; margin-bottom: 20px; text-decoration: underline; }
+
+.exercise-block { background: white; padding: 20px; border-radius: 10px; margin-top: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+.exercise-block p { margin-bottom: 10px; }
+.exercise-view h2 { color: #b06d04; }
+
+/* Bloki Kodu i Luki (Inputy) */
+pre { background-color: #1e1e1e; color: #d4d4d4; padding: 15px; border-radius: 8px; overflow-x: auto; font-family: monospace; font-size: 1.1rem; line-height: 1.8; }
+.blank { background-color: #333; color: #ffeb3b; border: 1px solid #555; border-bottom: 2px solid #fff; border-radius: 3px; font-family: monospace; font-size: 1.1rem; text-align: center; padding: 2px; outline: none; margin: 0 2px; transition: border 0.3s; }
+.blank:focus { border-bottom: 2px solid #d48806; background-color: #444; } /* Złote podświetlenie luki */
+
+/* Style dla poprawnych/błędnych odpowiedzi */
+.blank.correct { border-bottom: 3px solid #28a745; color: #28a745; background-color: rgba(40, 167, 69, 0.1); pointer-events: none; }
+.blank.incorrect { border-bottom: 3px solid #dc3545; color: #ff6b6b; }
+
+.check-btn { margin-top: 30px; background-color: #28a745; color: white; border: none; padding: 15px 30px; font-size: 1.2rem; border-radius: 30px; cursor: pointer; font-weight: bold; width: 100%; transition: background 0.3s; }
+.check-btn:hover { background-color: #218838; }
+.feedback-msg { margin-top: 15px; text-align: center; font-size: 1.2rem; font-weight: bold; }

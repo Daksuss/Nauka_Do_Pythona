@@ -1,0 +1,49 @@
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+body { background-color: #f8f9fa; color: #333; min-height: 100vh; display: flex; flex-direction: column; }
+
+/* Górna belka - Strażacka czerwień */
+.top-bar { background-color: #c82333; color: white; padding: 20px; display: flex; justify-content: center; align-items: center; position: relative; }
+.back-btn { position: absolute; left: 20px; color: white; text-decoration: none; font-weight: bold; background-color: rgba(255, 255, 255, 0.2); padding: 8px 15px; border-radius: 20px; transition: 0.3s; }
+.back-btn:hover { background-color: rgba(255, 255, 255, 0.4); }
+
+.tasks-container { max-width: 900px; margin: 40px auto; padding: 0 20px; width: 100%; }
+.intro-text { font-size: 1.1rem; color: #555; margin-bottom: 30px; line-height: 1.5; }
+
+/* Menu Główne Tematów */
+.topic-grid { display: flex; flex-direction: column; gap: 15px; margin-top: 20px; }
+.topic-card { background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); display: flex; justify-content: space-between; align-items: center; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; border-left: 5px solid #c82333; }
+.topic-card:hover { transform: translateX(10px); box-shadow: 0 4px 8px rgba(0,0,0,0.15); }
+.topic-info h3 { margin-bottom: 10px; color: #a71d2a; }
+.topic-arrow { color: #c82333; font-weight: bold; }
+
+/* Statusy (Odznaki) */
+.status { padding: 5px 12px; border-radius: 15px; font-size: 0.9rem; font-weight: bold; color: white; }
+.status.pending { background-color: #6c757d; } 
+.status.completed { background-color: #28a745; } 
+
+/* Widok Zadań */
+.hidden { display: none !important; }
+.close-topic-btn { background: none; border: none; color: #c82333; font-size: 1.1rem; font-weight: bold; cursor: pointer; margin-bottom: 20px; text-decoration: underline; }
+
+.task-view h2 { color: #a71d2a; margin-bottom: 10px; font-size: 1.8rem; }
+.task-block { background: white; padding: 25px; border-radius: 10px; margin-top: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); border: 1px solid #e9ecef; }
+.task-block h3 { color: #c82333; margin-bottom: 15px; font-size: 1.3rem; border-bottom: 2px solid #f1f1f1; padding-bottom: 10px; }
+.task-block p { line-height: 1.6; margin-bottom: 15px; font-size: 1.1rem; }
+
+/* Akordeon z rozwiązaniem */
+.solution summary { font-weight: bold; color: #0056b3; cursor: pointer; margin-top: 15px; padding: 10px; background-color: #f1f8ff; border-radius: 5px; list-style: none; display: inline-block; transition: background 0.3s; }
+.solution summary:hover { background-color: #e2f0ff; }
+.solution summary::before { content: '👁️ '; }
+
+/* Kod rozwiązania */
+pre { background-color: #1e1e1e; color: #d4d4d4; padding: 20px; border-radius: 8px; overflow-x: auto; font-family: 'Courier New', Courier, monospace; font-size: 1.05rem; margin-top: 15px; border-left: 4px solid #28a745; }
+
+/* Style dla indywidualnych przycisków zadań */
+.task-done-btn { margin-top: 20px; background-color: #28a745; color: white; border: none; padding: 12px 25px; font-size: 1.1rem; border-radius: 5px; cursor: pointer; font-weight: bold; transition: background 0.3s, opacity 0.3s; display: block; }
+.task-done-btn:hover { background-color: #218838; }
+
+/* Styl przycisku, który został już kliknięty */
+.task-done-btn.done { background-color: #6c757d; cursor: not-allowed; opacity: 0.8; }
+
+/* Nowy pomarańczowy status do licznika (np. 1/3) */
+.status.in-progress { background-color: #fd7e14; }
