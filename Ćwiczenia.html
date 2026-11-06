@@ -65,6 +65,13 @@
                     </div>
                     <div class="topic-arrow">▶</div>
                 </div>
+                <div class="topic-card" onclick="openTopic('topic-6')">
+                    <div class="topic-info">
+                        <h3>6. Praca z plikami, Pętla 'while' i Analiza Danych</h3>
+                        <span class="status pending" id="badge-topic-6">Oczekujące</span>
+                    </div>
+                    <div class="topic-arrow">▶</div>
+                </div>
 
             </div>
         </section>
@@ -262,50 +269,57 @@ print(f"Wynagrodzenie spadło o {czysta_wartosc}")
             <p class="feedback-msg" id="feedback-topic-4"></p>
         </section>
         <!-- WIDOK ZADAŃ DLA TEMATU 5 -->
-        <section id="topic-5" class="exercise-view hidden">
+<!-- WIDOK ZADAŃ DLA TEMATU 6 -->
+        <section id="topic-6" class="exercise-view hidden">
             <button class="close-topic-btn" onclick="closeTopic()">← Wróć do listy tematów</button>
-            <h2>5. Własne Funkcje (def), Typowanie i Zwracanie</h2>
-            <p>Uzupełnij luki w kodzie, wpisując słowa kluczowe funkcji, typowanie lub metody pomocnicze.</p>
+            <h2>6. Praca z plikami, Pętla 'while' i Analiza Danych</h2>
+            <p>Uzupełnij luki w kodzie, wpisując odpowiednie tryby otwarcia plików, metody tekstowe i funkcje wbudowane.</p>
 
             <div class="exercise-block">
-                <p><strong>Zadanie 1:</strong> Zdefiniuj własną funkcję o nazwie <code>policz_brutto</code> i zwróć wyliczony wynik z powrotem.</p>
-                <pre><code><input type="text" class="blank" data-answer="def" size="3"> policz_brutto(cena_netto):
-    wynik = cena_netto * 1.23
-    <input type="text" class="blank" data-answer="return" size="6"> round(wynik, 2)</code></pre>
+                <p><strong>Zadanie 1:</strong> Otwórz plik <code>logi.txt</code> w trybie <strong>dopisywania</strong> (aby nie skasować starych danych) i zapisz w nim nową linijkę.</p>
+                <pre><code>with <input type="text" class="blank" data-answer="open" size="4">('logi.txt', '<input type="text" class="blank" data-answer="a" size="1">', encoding='utf-8') as plik:
+    plik.<input type="text" class="blank" data-answer="write" size="5">("Nowe zdarzenie\n")</code></pre>
             </div>
 
             <div class="exercise-block">
-                <p><strong>Zadanie 2:</strong> Dodaj podpowiedź typu (type hint), informującą, że parametr <code>tekst</code> powinien być ciągiem znaków (stringiem).</p>
-                <pre><code>def wyczysc_dane(tekst: <input type="text" class="blank" data-answer="str" size="3">):
-    return tekst.strip().capitalize()</code></pre>
+                <p><strong>Zadanie 2:</strong> Odczytaj plik linijka po linijce, używając trybu <strong>odczytu</strong>. Pozbądź się białych znaków (np. enterów) na brzegach każdego pobranego tekstu.</p>
+                <pre><code>with open('imiona.txt', '<input type="text" class="blank" data-answer="r" size="1">', encoding='utf-8') as plik:
+    <input type="text" class="blank" data-answer="for" size="3"> linia in plik:
+        czyste_imie = linia.<input type="text" class="blank" data-answer="strip" size="5">()
+        print(czyste_imie)</code></pre>
             </div>
 
             <div class="exercise-block">
-                <p><strong>Zadanie 3:</strong> Funkcja zwraca dwie wartości naraz. Rozpakuj je do dwóch zmiennych podczas wywoływania funkcji.</p>
-                <pre><code>def przelicz(a, b):
-    return a + b, a - b
-
-suma_val, roznica_val = <input type="text" class="blank" data-answer="przelicz" size="8">(10, 5)</code></pre>
+                <p><strong>Zadanie 3:</strong> Stwórz <strong>nieskończoną pętlę</strong>, która będzie pytać użytkownika o wybór "T" lub "N". Pętla zakończy się i funkcja odda wynik dopiero wtedy, gdy wpisana zostanie poprawna odpowiedź.</p>
+                <pre><code>def wybierz_opcje():
+    <input type="text" class="blank" data-answer="while" size="5"> <input type="text" class="blank" data-answer="True" size="4">:
+        wybor = input("Wybierz T lub N: ")
+        
+        if wybor == 'T' or wybor == 'N':
+            <input type="text" class="blank" data-answer="return" size="6"> wybor
+        else:
+            print("Błąd, spróbuj ponownie.")</code></pre>
             </div>
 
             <div class="exercise-block">
-                <p><strong>Zadanie 4:</strong> Użyj odpowiedniej metody, aby rozdzielić ciąg znaków w miejscu separatora <code>#</code>.</p>
-                <pre><code>produkt_dane = "chleb#4.50"
-nazwa, cena = produkt_dane.<input type="text" class="blank" data-answer="split" size="5">('#')</code></pre>
+                <p><strong>Zadanie 4:</strong> Przejdź pętlą przez plik z danymi, pobierając jednocześnie <strong>numer linijki</strong>. Następnie rozdziel każdą linijkę w miejscu, gdzie znajduje się przecinek.</p>
+                <pre><code>with open('dane.csv', 'r') as odczyt:
+    for numer, element in <input type="text" class="blank" data-answer="enumerate" size="9">(odczyt):
+        element = element.<input type="text" class="blank" data-answer="split" size="5">(",")
+        print(f"Linia {numer}: {element}")</code></pre>
             </div>
 
             <div class="exercise-block">
-                <p><strong>Zadanie 5:</strong> Uzupełnij funkcję segregującą – dodaj wyselekcjonowane imię na sam koniec nowej listy.</p>
-                <pre><code>def dodaj_do_listy(imie, lista_zenska, lista_meska):
-    if imie[-1] == 'a':
-        lista_zenska.<input type="text" class="blank" data-answer="append" size="6">(imie)
-    else:
-        lista_meska.append(imie)</code></pre>
+                <p><strong>Zadanie 5:</strong> Uzupełnij funkcję, która znajduje najmniejszą i największą wartość w liście temperatur i zwraca je obie z powrotem do głównego programu.</p>
+                <pre><code>def skrajne_temperatury(lista_temp):
+    najzimniej = <input type="text" class="blank" data-answer="min" size="3">(lista_temp)
+    najcieplej = <input type="text" class="blank" data-answer="max" size="3">(lista_temp)
+    return najzimniej, najcieplej</code></pre>
             </div>
 
             <!-- Przycisk sprawdzający odpowiedzi w tym temacie -->
-            <button class="check-btn" onclick="checkAnswers('topic-5')">Sprawdź odpowiedzi</button>
-            <p class="feedback-msg" id="feedback-topic-5"></p>
+            <button class="check-btn" onclick="checkAnswers('topic-6')">Sprawdź odpowiedzi</button>
+            <p class="feedback-msg" id="feedback-topic-6"></p>
         </section>
 
     </main>
