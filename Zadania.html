@@ -61,10 +61,20 @@
                     <div class="topic-arrow">▶</div>
                 </div>
 
+               
+                <div class="topic-card" onclick="openTopic('task-boss-1')">
+                    <div class="topic-info">
+                        <h3>Podsumowanie (Tematy 1-5)</h3>
+                        <span class="status pending" id="badge-task-boss-1">Ukończono 0/1</span>
+                    </div>
+                    <div class="topic-arrow">▶</div>
+                </div>
+
+                <!-- NOWY TEMAT 6 -->
                 <div class="topic-card" onclick="openTopic('task-6')">
                     <div class="topic-info">
-                        <h3> Podsumowanie</h3>
-                        <span class="status pending" id="badge-task-6">Ukończono 0/1</span>
+                        <h3>6. Praca z plikami, Pętla 'while' i Analiza Danych</h3>
+                        <span class="status pending" id="badge-task-6">Ukończono 0/4</span>
                     </div>
                     <div class="topic-arrow">▶</div>
                 </div>
@@ -380,11 +390,11 @@ print(f"Krótkie: {male}")</code></pre>
         </section>
 
 
-        <!-- WIDOK ZADAŃ DLA WIELKIEGO FINAŁU (SEKCJA 6) -->
-        <section id="task-6" class="task-view hidden">
+        
+        <section id="task-boss-1" class="task-view hidden">
             <button class="close-topic-btn" onclick="closeTopic()">← Wróć do listy modułów</button>
-            <h2>Podsumowanie</h2>
-            <p class="intro-text">Oto ostateczny test sprawdzający całą Twoją dotychczasową wiedzę. Połącz klocki, które poznałeś we wcześniejszych modułach w jeden działający program!</p>
+            <h2>Podsumowanie (Tematy 1-5)</h2>
+            <p class="intro-text">Oto ostateczny test sprawdzający całą Twoją dotychczasową wiedzę z 5 pierwszych modułów. Połącz klocki w jeden działający program!</p>
 
             <div class="task-block" style="border: 2px solid #c82333; background-color: #fff9fa;">
                 <h3 style="color: #c82333;">Zadanie: Raport HR</h3>
@@ -430,7 +440,98 @@ for k in lista_k: print(k)
 print("\n--- RAPORT MĘŻCZYZN ---")
 for m in lista_m: print(m)</code></pre>
                 </details>
-                <button class="task-done-btn" onclick="markTaskAsDone(this, 'task-6', 1)">✓ Oznacz Wielki Finał jako zakończony!</button>
+                <!-- Zaktualizowany ID na task-boss-1 -->
+                <button class="task-done-btn" onclick="markTaskAsDone(this, 'task-boss-1', 1)">✓ Oznacz Wielki Finał jako zakończony!</button>
+            </div>
+        </section>
+
+
+        <!-- WIDOK ZADAŃ DLA TEMATU 6 -->
+        <section id="task-6" class="task-view hidden">
+            <button class="close-topic-btn" onclick="closeTopic()">← Wróć do listy modułów</button>
+            <h2>6. Praca z plikami, Pętla 'while' i Analiza Danych</h2>
+            <p class="intro-text">Oto wyzwania sprawdzające odczyt i zapis danych z dysku oraz weryfikację tego, co wpisuje użytkownik.</p>
+
+            <!-- ZADANIE 1 -->
+            <div class="task-block">
+                <h3>Zadanie 1: Natrętny strażnik (while True)</h3>
+                <p>Napisz funkcję <code>pobierz_wiek()</code>. Wewnątrz stwórz nieskończoną pętlę <code>while True</code>, która zapyta użytkownika o wiek. <br>
+                Użyj metody tekstowej <code>.isdigit()</code>, aby sprawdzić, czy wpisano same cyfry. Jeśli tak – przerób tekst na <code>int</code> i użyj <code>return</code>, aby zwrócić wiek. Jeśli nie – wypisz "Błąd! Wpisz samą liczbę." i pozwól pętli zapytać ponownie.</p>
+                <details class="solution">
+                    <summary>Pokaż przykładowe rozwiązanie</summary>
+                    <pre><code>def pobierz_wiek():
+    while True:
+        wiek_str = input("Podaj swój wiek: ").strip()
+        
+        if wiek_str.isdigit():
+            return int(wiek_str)
+        else:
+            print("Błąd! Wpisz samą liczbę.")
+
+moj_wiek = pobierz_wiek()
+print(f"Twój wiek to {moj_wiek} lat.")</code></pre>
+                </details>
+                <button class="task-done-btn" onclick="markTaskAsDone(this, 'task-6', 1)">✓ Oznacz jako zakończone</button>
+            </div>
+
+            <!-- ZADANIE 2 -->
+            <div class="task-block">
+                <h3>Zadanie 2: Rejestrator wizyt (Zapis do pliku)</h3>
+                <p>Stwórz zmienną tekstową <code>nowy_klient = "Kamil#Warszawa#25\n"</code> (pamiętaj o znaku nowej linii na końcu).<br>
+                Użyj <code>with open(...)</code>, aby otworzyć plik <code>baza_klientow.txt</code> w trybie <strong>dopisywania</strong> ('a'). Następnie użyj metody <code>.write()</code>, aby zapisać klienta do pliku.</p>
+                <details class="solution">
+                    <summary>Pokaż przykładowe rozwiązanie</summary>
+                    <pre><code>nowy_klient = "Kamil#Warszawa#25\n"
+
+# Używamy trybu 'a' (append), aby nie skasować poprzednich klientów
+with open('baza_klientow.txt', 'a', encoding='utf-8') as plik:
+    plik.write(nowy_klient)
+    
+print("Zapisano pomyślnie!")</code></pre>
+                </details>
+                <button class="task-done-btn" onclick="markTaskAsDone(this, 'task-6', 2)">✓ Oznacz jako zakończone</button>
+            </div>
+
+            <!-- ZADANIE 3 -->
+            <div class="task-block">
+                <h3>Zadanie 3: Wykrywacz błędnych współrzędnych</h3>
+                <p>Masz plik <code>punkty.txt</code>, w którym każda linia to współrzędne rozdzielone przecinkiem (np. <code>15,45</code>).<br>
+                Użyj <code>with open</code> (tryb 'r'), pętli <code>for</code> oraz <code>enumerate()</code>. W pętli pozbądź się znaków nowej linii (<code>.strip()</code>) i podziel linię w miejscu przecinka (<code>.split(',')</code>). Jeśli otrzymana w ten sposób lista ma dokładnie 2 elementy, wypisz "Linia [numer]: OK", w przeciwnym razie "Linia [numer]: BŁĄD".</p>
+                <details class="solution">
+                    <summary>Pokaż przykładowe rozwiązanie</summary>
+                    <pre><code># Zakładamy, że plik punkty.txt istnieje
+with open('punkty.txt', 'r', encoding='utf-8') as plik:
+    for numer, linia in enumerate(plik):
+        
+        # strip() czyści z \n, a split() dzieli na listę
+        elementy = linia.strip().split(',')
+        
+        if len(elementy) == 2:
+            print(f"Linia {numer}: OK (X={elementy[0]}, Y={elementy[1]})")
+        else:
+            print(f"Linia {numer}: BŁĄD DANYCH!")</code></pre>
+                </details>
+                <button class="task-done-btn" onclick="markTaskAsDone(this, 'task-6', 3)">✓ Oznacz jako zakończone</button>
+            </div>
+
+            <!-- ZADANIE 4 -->
+            <div class="task-block">
+                <h3>Zadanie 4: Ekstremalne pomiary</h3>
+                <p>Napisz funkcję <code>oblicz_skrajnosci(lista_pomiarow)</code>. Funkcja ma przyjąć listę liczb. Wewnątrz użyj wbudowanych funkcji matematycznych, aby znaleźć najmniejszą i największą wartość, a następnie <strong>zwróć je obie</strong>. Wywołaj funkcję dla listy <code>[10.5, 45.2, 8.9, 99.1, 4.3]</code> i wypisz wynik.</p>
+                <details class="solution">
+                    <summary>Pokaż przykładowe rozwiązanie</summary>
+                    <pre><code>def oblicz_skrajnosci(lista_pomiarow):
+    najmniejszy = min(lista_pomiarow)
+    najwiekszy = max(lista_pomiarow)
+    return najmniejszy, najwiekszy
+
+wyniki = [10.5, 45.2, 8.9, 99.1, 4.3]
+
+# Rozpakowujemy zwrócone wartości
+min_temp, max_temp = oblicz_skrajnosci(wyniki)
+print(f"Skrajne temperatury: od {min_temp} do {max_temp} stopni.")</code></pre>
+                </details>
+                <button class="task-done-btn" onclick="markTaskAsDone(this, 'task-6', 4)">✓ Oznacz jako zakończone</button>
             </div>
         </section>
 
