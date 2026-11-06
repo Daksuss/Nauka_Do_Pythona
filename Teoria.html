@@ -14,7 +14,7 @@
     </header>
     <main class="theory-list">
         <details class="theory-item">
-            <summary>Podstawy, zmienne i wejście/wyjście</summary>
+            <summary>1. Podstawy, zmienne i wejście/wyjście</summary>
             <div class="content-body">
                 <h2>Podstawy, zmienne i wejście/wyjście</h2>
                 
@@ -95,7 +95,7 @@ print(f"Waga: {waga} kg, Cena: {cena} zł")</code></pre>
         </details>
         <!-- ELEMENT 2 -->
         <details class="theory-item">
-            <summary>Praca z tekstem (Stringi): Wielkość liter, Długość i Wycinanie</summary>
+            <summary>2. Praca z tekstem (Stringi): Wielkość liter, Długość i Wycinanie</summary>
             <div class="content-body">
                 <h2>Praca z tekstem (Stringi): Wielkość liter, Długość i Wycinanie</h2>
                 
@@ -171,7 +171,7 @@ print(tekst[::-1])   # Wypisze: einawoimargorP</code></pre>
 
        <!-- ELEMENT 3 -->
         <details class="theory-item">
-            <summary>Listy, Pętle i Podejmowanie Decyzji (If)</summary>
+            <summary>3. Listy, Pętle i Podejmowanie Decyzji (If)</summary>
             <div class="content-body">
                 <h2>Listy, Pętle i Podejmowanie Decyzji (If)</h2>
                 
@@ -261,7 +261,7 @@ for produkt in koszyk_klienta:
         </details>
        <!-- ELEMENT 4 -->
         <details class="theory-item">
-            <summary>Krotki, Losowość i Zaawansowane Pętle (enumerate)</summary>
+            <summary>4. Krotki, Losowość i Zaawansowane Pętle (enumerate)</summary>
             <div class="content-body">
                 <h2>Krotki, Losowość i Zaawansowane Pętle (enumerate)</h2>
                 
@@ -321,9 +321,9 @@ print(f"Temperatura zmieniła się o {abs(roznica_temperatur)} stopni.")
             </div>
         </details>
 
-       <!-- ELEMENT 5 -->
+<!-- ELEMENT 5 -->
         <details class="theory-item">
-            <summary>Własne Funkcje (def), Typowanie i Zwracanie Wartości</summary>
+            <summary>5. Własne Funkcje (def), Typowanie i Zwracanie Wartości</summary>
             <div class="content-body">
                 <h2>Własne Funkcje (def), Typowanie i Zwracanie Wartości</h2>
                 
@@ -376,7 +376,90 @@ print(f"Suma to {lacznie}, a różnica wynosi {dystans}")</code></pre>
     elektronika = []
     
     for produkt in lista_produktow:
-        # Zła praktyka: sprawdzamy konkretne słowa "
+        # Zła praktyka: sprawdzamy konkretne słowa "na sztywno" dla przykładu
+        if produkt == "Chleb" or produkt == "Ser":
+            jedzenie.append(produkt)
+        else:
+            elektronika.append(produkt)
+            
+    # Zwracamy dwie gotowe listy
+    return jedzenie, elektronika
+
+# Pula surowych produktów
+zakupy = ["Chleb", "Myszka", "Ser", "Kabel"]
+
+# Odpalamy funkcję i łapiemy jej wyniki do dwóch nowych zmiennych
+koszyk_spozywczy, koszyk_rtv = segreguj_produkty(zakupy)
+
+print(koszyk_spozywczy) # Wypisze: ['Chleb', 'Ser']
+print(koszyk_rtv)       # Wypisze: ['Myszka', 'Kabel']</code></pre>
+            </div>
+        </details>
+<!-- TEMAT 6 -->
+        <details class="theory-item">
+            <summary>6. Praca z plikami, Pętla 'while' i Analiza Danych</summary>
+            <div class="content-body">
+                <h2>1. Otwieranie i zapisywanie plików (with open)</h2>
+                <p>W Pythonie do obsługi plików (np. <code>.txt</code> czy <code>.csv</code>) używamy instrukcji <code>with open()</code>. Dzięki niej plik zamyka się automatycznie, gdy skończymy z nim pracować, co chroni przed błędami i uszkodzeniem danych.</p>
+                <ul>
+                    <li><strong>'r' (Read)</strong> – tylko do odczytu (domyślny).</li>
+                    <li><strong>'w' (Write)</strong> – do zapisu (kasuje starą zawartość pliku).</li>
+                    <li><strong>'a' (Append)</strong> – do dopisywania na końcu pliku (nie kasuje starych danych).</li>
+                    <li><strong>'a+' (Append + Read)</strong> – do dopisywania i jednoczesnego odczytu.</li>
+                </ul>
+                <p>Zawsze warto dodać <code>encoding='utf-8'</code>, aby polskie znaki wyświetlały się poprawnie.</p>
+                <pre><code>wpis = "Użytkownik zalogowany pomyślnie.\n"
+
+# Tryb 'a' dopisze tekst na końcu pliku bez kasowania poprzednich logów
+with open('logi_systemowe.txt', 'a', encoding='utf-8') as plik:
+    plik.write(wpis)</code></pre>
+
+                <h3>Odczyt pliku linijka po linijce</h3>
+                <p>Aby przetworzyć plik, możemy użyć pętli <code>for</code>, która automatycznie przejdzie przez każdą linijkę dokumentu. Używamy metody <code>.strip()</code>, aby usunąć ukryte znaki nowej linii (<code>\n</code>).</p>
+                <pre><code>lista_dlugosci = []
+with open('wiersze.txt', 'r', encoding='utf-8') as plik:
+    for linia in plik:
+        # linia.strip() usuwa białe znaki i entery z brzegów tekstu
+        lista_dlugosci.append(len(linia.strip()))</code></pre>
+
+                <h2>2. Pętla nieskończona "while True" (Wymuszanie wyboru)</h2>
+                <p>Czasami użytkownik wpisze coś źle (np. wpisze litery zamiast cyfr). Pętla <code>while True</code> będzie kręcić się w nieskończoność i pytać o dane do skutku, dopóki nie użyjemy instrukcji <code>break</code> lub <code>return</code> (jeśli jesteśmy w funkcji).</p>
+                <pre><code>def pobierz_pin():
+    while True:
+        pin = input("Podaj 4-cyfrowy PIN: ").strip()
+        
+        # Sprawdzamy, czy długość to 4 i czy składa się tylko z cyfr
+        if len(pin) == 4 and pin.isdigit():
+            return pin # Poprawny PIN kończy pętlę i zwraca wartość!
+        else:
+            print("Błąd! Kod PIN musi składać się dokładnie z 4 cyfr.")</code></pre>
+
+                <h2>3. Przetwarzanie analityczne: .split(), enumerate() i typecasting</h2>
+                <p>Kiedy wczytujemy pliki z danymi odseparowanymi znakiem (np. plik CSV z przecinkami), każda linijka to tylko długi tekst. Musimy go "pociąć" za pomocą <code>.split(',')</code> i zamienić teksty na liczby (np. <code>float()</code>).</p>
+                <p>Funkcja <code>enumerate()</code> dodatkowo pozwala nam śledzić <strong>numer aktualnej linijki</strong>.</p>
+                <pre><code>with open('oceny.csv', 'r', encoding='UTF-8') as plik:
+    # enumerate iteruje, dając nam numer linii i jej zawartość
+    for numer, wiersz in enumerate(plik):
+        # Tniemy tekst np. "Anna,Kowalska,5" w miejscu przecinków
+        elementy = wiersz.split(",") 
+        
+        if len(elementy) != 3:
+            print(f"W linii {numer} błąd: brakuje danych ucznia!")</code></pre>
+
+                <h2>4. Funkcje matematyczne min() i max()</h2>
+                <p>Python posiada wbudowane funkcje do natychmiastowego znajdowania najmniejszej i największej wartości w podanej liście. Funkcja może też zwrócić obie te wartości naraz.</p>
+                <pre><code>def skrajne_ceny(lista_cen: list):
+    najtanszy = min(lista_cen)
+    najdrozszy = max(lista_cen)
+    return najtanszy, najdrozszy # Zwracamy dwie wartości naraz
+
+koszyk = [12.50, 4.99, 120.00, 45.00]
+
+# Rozpakowujemy wynik do dwóch zmiennych
+min_cena, max_cena = skrajne_ceny(koszyk)
+print(f"Najtańszy produkt: {min_cena} zł, Najdroższy: {max_cena} zł")</code></pre>
+            </div>
+        </details>
     </main>
 </body>
 </html>
