@@ -1,43 +1,289 @@
-* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
-body { background-color: #f8f9fa; color: #333; min-height: 100vh; display: flex; flex-direction: column; }
+/* Płynne przejście kolorów dla całej strony */
+body {
+    transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+/* --- TRYB CIEMNY (nadpisuje domyślne kolory, gdy body ma klasę .dark-theme) --- */
+body.dark-theme {
+    background-color: #121212;
+    color: #e0e0e0;
+}
+
+body.dark-theme .top-bar {
+    background-color: #1e1e1e;
+    border-bottom: 1px solid #333;
+}
+
+body.dark-theme .topic-card,
+body.dark-theme .task-block,
+body.dark-theme .theory-item {
+    background-color: #1e1e1e;
+    border-color: #333;
+    color: #e0e0e0;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+body.dark-theme pre {
+    background-color: #0d0d0d;
+    border: 1px solid #333;
+    color: #00ffcc; /* Hakerski zielony do kodu */
+}
+
+/* --- WYGLĄD I ANIMACJA PRZYCISKU --- */
+/* Upewniamy się, że header jest "punktem odniesienia" dla przycisków */
+.top-bar {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Zapewnia, że tytuł h1 jest idealnie na środku */
+    /* Twoje pozostałe style dla top-bar (np. tło, wysokość) zostają bez zmian! */
+}
+
+/* Jeśli masz już klasę .back-btn, upewnij się, że ma takie pozycjonowanie: */
+.back-btn {
+    position: absolute;
+    left: 20px;
+}
+
+/* Nasz przycisk motywu w prawym górnym rogu headera */
+.theme-btn {
+    position: absolute;
+    right: 20px;
+    background: transparent;
+    border: none;
+    font-size: 1.8rem;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 50%;
+    margin: 0; /* Usuwamy marginesy, żeby idealnie dolegał do prawej */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.theme-btn:hover {
+    background-color: rgba(255, 255, 255, 0.1); /* Lekkie rozjaśnienie na hover */
+    transform: scale(1.1);
+}
+
+/* Animacja zostaje bez zmian */
+.rotate-anim .icon {
+    display: inline-block;
+    animation: spin-bounce 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+}
+
+@keyframes spin-bounce {
+    0% { transform: rotate(0deg) scale(1); }
+    50% { transform: rotate(180deg) scale(1.3); }
+    100% { transform: rotate(360deg) scale(1); }
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+    background-color: #f8f9fa;
+    color: #333;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
 
 /* Górna belka - miodowy złoty */
-.top-bar { background-color: #d48806; color: white; padding: 20px; display: flex; justify-content: center; align-items: center; position: relative; }
-.back-btn { position: absolute; left: 20px; color: white; text-decoration: none; font-weight: bold; background-color: rgba(255, 255, 255, 0.2); padding: 8px 15px; border-radius: 20px; }
-.back-btn:hover { background-color: rgba(255, 255, 255, 0.4); }
+.top-bar {
+    background-color: #d48806;
+    color: white;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
 
-.exercises-container { max-width: 900px; margin: 40px auto; padding: 0 20px; width: 100%; }
+.back-btn {
+    position: absolute;
+    left: 20px;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    background-color: rgba(255, 255, 255, 0.2);
+    padding: 8px 15px;
+    border-radius: 20px;
+}
+
+.back-btn:hover {
+    background-color: rgba(255, 255, 255, 0.4);
+}
+
+.exercises-container {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 0 20px;
+    width: 100%;
+}
 
 /* Menu Główne Tematów */
-.topic-grid { display: flex; flex-direction: column; gap: 15px; margin-top: 20px; }
-.topic-card { background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); display: flex; justify-content: space-between; align-items: center; cursor: pointer; transition: transform 0.2s; }
-.topic-card:hover { transform: translateX(10px); box-shadow: 0 4px 8px rgba(0,0,0,0.15); }
-.topic-info h3 { margin-bottom: 10px; color: #b06d04; /* Ciemniejszy złoty dla czytelności */ }
-.topic-arrow { color: #d48806; font-weight: bold; }
+.topic-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.topic-card {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.topic-card:hover {
+    transform: translateX(10px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.topic-info h3 {
+    margin-bottom: 10px;
+    color: #b06d04;
+    /* Ciemniejszy złoty dla czytelności */
+}
+
+.topic-arrow {
+    color: #d48806;
+    font-weight: bold;
+}
 
 /* Statusy (Odznaki) */
-.status { padding: 5px 12px; border-radius: 15px; font-size: 0.9rem; font-weight: bold; color: white; }
-.status.pending { background-color: #6c757d; } 
-.status.in-progress { background-color: #fd7e14; } 
-.status.completed { background-color: #28a745; } 
+.status {
+    padding: 5px 12px;
+    border-radius: 15px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: white;
+}
+
+.status.pending {
+    background-color: #6c757d;
+}
+
+.status.in-progress {
+    background-color: #fd7e14;
+}
+
+.status.completed {
+    background-color: #28a745;
+}
 
 /* Widok Ćwiczeń */
-.hidden { display: none !important; }
-.close-topic-btn { background: none; border: none; color: #b06d04; font-size: 1.1rem; font-weight: bold; cursor: pointer; margin-bottom: 20px; text-decoration: underline; }
+.hidden {
+    display: none !important;
+}
 
-.exercise-block { background: white; padding: 20px; border-radius: 10px; margin-top: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
-.exercise-block p { margin-bottom: 10px; }
-.exercise-view h2 { color: #b06d04; }
+.close-topic-btn {
+    background: none;
+    border: none;
+    color: #b06d04;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    margin-bottom: 20px;
+    text-decoration: underline;
+}
+
+.exercise-block {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.exercise-block p {
+    margin-bottom: 10px;
+}
+
+.exercise-view h2 {
+    color: #b06d04;
+}
 
 /* Bloki Kodu i Luki (Inputy) */
-pre { background-color: #1e1e1e; color: #d4d4d4; padding: 15px; border-radius: 8px; overflow-x: auto; font-family: monospace; font-size: 1.1rem; line-height: 1.8; }
-.blank { background-color: #333; color: #ffeb3b; border: 1px solid #555; border-bottom: 2px solid #fff; border-radius: 3px; font-family: monospace; font-size: 1.1rem; text-align: center; padding: 2px; outline: none; margin: 0 2px; transition: border 0.3s; }
-.blank:focus { border-bottom: 2px solid #d48806; background-color: #444; } /* Złote podświetlenie luki */
+pre {
+    background-color: #1e1e1e;
+    color: #d4d4d4;
+    padding: 15px;
+    border-radius: 8px;
+    overflow-x: auto;
+    font-family: monospace;
+    font-size: 1.1rem;
+    line-height: 1.8;
+}
+
+.blank {
+    background-color: #333;
+    color: #ffeb3b;
+    border: 1px solid #555;
+    border-bottom: 2px solid #fff;
+    border-radius: 3px;
+    font-family: monospace;
+    font-size: 1.1rem;
+    text-align: center;
+    padding: 2px;
+    outline: none;
+    margin: 0 2px;
+    transition: border 0.3s;
+}
+
+.blank:focus {
+    border-bottom: 2px solid #d48806;
+    background-color: #444;
+}
+
+/* Złote podświetlenie luki */
 
 /* Style dla poprawnych/błędnych odpowiedzi */
-.blank.correct { border-bottom: 3px solid #28a745; color: #28a745; background-color: rgba(40, 167, 69, 0.1); pointer-events: none; }
-.blank.incorrect { border-bottom: 3px solid #dc3545; color: #ff6b6b; }
+.blank.correct {
+    border-bottom: 3px solid #28a745;
+    color: #28a745;
+    background-color: rgba(40, 167, 69, 0.1);
+    pointer-events: none;
+}
 
-.check-btn { margin-top: 30px; background-color: #28a745; color: white; border: none; padding: 15px 30px; font-size: 1.2rem; border-radius: 30px; cursor: pointer; font-weight: bold; width: 100%; transition: background 0.3s; }
-.check-btn:hover { background-color: #218838; }
-.feedback-msg { margin-top: 15px; text-align: center; font-size: 1.2rem; font-weight: bold; }
+.blank.incorrect {
+    border-bottom: 3px solid #dc3545;
+    color: #ff6b6b;
+}
+
+.check-btn {
+    margin-top: 30px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    border-radius: 30px;
+    cursor: pointer;
+    font-weight: bold;
+    width: 100%;
+    transition: background 0.3s;
+}
+
+.check-btn:hover {
+    background-color: #218838;
+}
+
+.feedback-msg {
+    margin-top: 15px;
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
