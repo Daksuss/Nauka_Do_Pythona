@@ -1,4 +1,89 @@
-/* --- RESET I BAZOWE USTAWIENIA --- */
+/* Płynne przejście kolorów dla całej strony */
+body {
+    transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+/* --- TRYB CIEMNY (nadpisuje domyślne kolory, gdy body ma klasę .dark-theme) --- */
+body.dark-theme {
+    background-color: #121212;
+    color: #e0e0e0;
+}
+
+body.dark-theme .top-bar {
+    background-color: #1e1e1e;
+    border-bottom: 1px solid #333;
+}
+
+body.dark-theme .topic-card,
+body.dark-theme .task-block,
+body.dark-theme .theory-item {
+    background-color: #1e1e1e;
+    border-color: #333;
+    color: #e0e0e0;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+body.dark-theme pre {
+    background-color: #0d0d0d;
+    border: 1px solid #333;
+    color: #00ffcc; /* Hakerski zielony do kodu */
+}
+main {
+    position: relative; 
+}
+
+/* --- WYGLĄD I ANIMACJA PRZYCISKU --- */
+/* Upewniamy się, że header jest "punktem odniesienia" dla przycisków */
+.top-bar {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Zapewnia, że tytuł h1 jest idealnie na środku */
+    /* Twoje pozostałe style dla top-bar (np. tło, wysokość) zostają bez zmian! */
+}
+
+/* Jeśli masz już klasę .back-btn, upewnij się, że ma takie pozycjonowanie: */
+.back-btn {
+    position: absolute;
+    left: 20px;
+}
+
+/* Nasz przycisk motywu w prawym górnym rogu headera */
+.theme-btn {
+    position: absolute;
+    right: 20px;
+    top: 5%; /* Wymusza ustawienie w połowie wysokości paska */
+    transform: translateY(-50%); /* Przesuwa przycisk o połowę jego własnej wysokości, dając idealny środek */
+    background: transparent;
+    border: none;
+    font-size: 1.8rem;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 50%;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.theme-btn:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    /* Musimy zachować translateY, dodając jednocześnie efekt powiększenia */
+    transform: translateY(-50%) scale(1.1); 
+}
+/* Animacja zostaje bez zmian */
+.rotate-anim .icon {
+    display: inline-block;
+    animation: spin-bounce 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+}
+
+@keyframes spin-bounce {
+    0% { transform: rotate(0deg) scale(1); }
+    50% { transform: rotate(180deg) scale(1.3); }
+    100% { transform: rotate(360deg) scale(1); }
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -45,6 +130,38 @@ header, footer {
     color: #333;
     margin-bottom: 40px; /* Odstęp między napisem a przyciskami */
 }
+/* Kontener wymuszający ułożenie przycisku w nowej linii i na środku */
+.changelog-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 25px; /* Odstęp w dół od trzech głównych przycisków */
+}
+
+/* Lekkie wyróżnienie przycisku dziennika zmian (np. inny kolor tła). 
+   Jeśli wolisz, żeby był taki sam jak reszta, po prostu usuń ten fragment! */
+.changelog-btn {
+    background-color: #007bff; /* Ładny, zielony kolor */
+}
+
+.changelog-btn:hover {
+    background-color: #004494;
+}
+.back-btn {
+    position: absolute;
+    left: 20px;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    background-color: rgba(255, 255, 255, 0.2);
+    padding: 8px 15px;
+    border-radius: 20px;
+    transition: background 0.3s;
+}
+.back-btn:hover {
+    background-color: rgba(255, 255, 255, 0.4);
+}
+
 
 /* --- PRZYCISKI --- */
 .button-menu {
