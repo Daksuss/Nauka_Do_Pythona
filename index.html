@@ -10,11 +10,15 @@
     
     <!-- Podpięcie przyszłego pliku JS do interakcji i sprawdzania zadań -->
     <script src="script.js" defer></script>
+    <script src="theme.js" defer></script>
 </head>
 <body>
 
     <header>
         <h1>Python dla opornych</h1>
+        <button id="theme-toggle" class="theme-btn" aria-label="Przełącz motyw">
+            <span class="icon">☀️</span>
+        </button>
     </header>
 
     <main class="main-container">
@@ -32,16 +36,19 @@
                 <a href="Ćwiczenia.html" class="btn">Ćwiczenia</a>
                 <a href="Zadania.html" class="btn">Zadania</a>
             </nav>
+            <div class="changelog-container">
+                <a href="changelog.html" class="btn changelog-btn">Co dodałem/zmieniłem</a>
+            </div>
         </section>
 
         <!-- Prawe miejsce na obrazek -->
         <div class="image-placeholder right">
-            <img src="pyton.jpg" alt="Prawa grafika">
+            <img src="pyton2.png" alt="Prawa grafika">
         </div>
     </main>
 
     <footer>
-        <p>Ostatnia aktualizacja: 06.11.2026</p>
+        <p>Ostatnia aktualizacja: 09.11.2026</p>
     </footer>
 
 </body>
