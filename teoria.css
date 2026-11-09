@@ -1,4 +1,86 @@
 /* --- RESET I BAZA --- */
+
+/* Płynne przejście kolorów dla całej strony */
+body {
+    transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+/* --- TRYB CIEMNY (nadpisuje domyślne kolory, gdy body ma klasę .dark-theme) --- */
+body.dark-theme {
+    background-color: #121212;
+    color: #e0e0e0;
+}
+
+body.dark-theme .top-bar {
+    background-color: #1e1e1e;
+    border-bottom: 1px solid #333;
+}
+
+body.dark-theme .topic-card,
+body.dark-theme .task-block,
+body.dark-theme .theory-item {
+    background-color: #1e1e1e;
+    border-color: #333;
+    color: #e0e0e0;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+body.dark-theme pre {
+    background-color: #0d0d0d;
+    border: 1px solid #333;
+    color: #00ffcc; /* Hakerski zielony do kodu */
+}
+
+/* --- WYGLĄD I ANIMACJA PRZYCISKU --- */
+/* Upewniamy się, że header jest "punktem odniesienia" dla przycisków */
+.top-bar {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Zapewnia, że tytuł h1 jest idealnie na środku */
+    /* Twoje pozostałe style dla top-bar (np. tło, wysokość) zostają bez zmian! */
+}
+
+/* Jeśli masz już klasę .back-btn, upewnij się, że ma takie pozycjonowanie: */
+.back-btn {
+    position: absolute;
+    left: 20px;
+}
+
+/* Nasz przycisk motywu w prawym górnym rogu headera */
+.theme-btn {
+    position: absolute;
+    right: 20px;
+    background: transparent;
+    border: none;
+    font-size: 1.8rem;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 50%;
+    margin: 0; /* Usuwamy marginesy, żeby idealnie dolegał do prawej */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.theme-btn:hover {
+    background-color: rgba(255, 255, 255, 0.1); /* Lekkie rozjaśnienie na hover */
+    transform: scale(1.1);
+}
+
+/* Animacja zostaje bez zmian */
+.rotate-anim .icon {
+    display: inline-block;
+    animation: spin-bounce 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+}
+
+@keyframes spin-bounce {
+    0% { transform: rotate(0deg) scale(1); }
+    50% { transform: rotate(180deg) scale(1.3); }
+    100% { transform: rotate(360deg) scale(1); }
+}
+
 * {
     margin: 0;
     padding: 0;
